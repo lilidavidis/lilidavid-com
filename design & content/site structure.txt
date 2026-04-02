@@ -1,0 +1,58 @@
+Pages:
+
+Home
+How I help
+About
+Contact
+
+That’s enough for a strong first version.
+
+What each page should do
+Home
+
+This is the page we’ve already outlined.
+Its job is to:
+
+express your core positioning
+help visitors recognize their problem
+show your approach
+lead them toward contact
+How I help
+
+This page goes deeper into:
+
+Facilitation
+Consulting / advisory
+Coaching
+
+Its job is to help people understand:
+
+what each service is for
+when they might need it
+what working with you looks like
+About
+
+This page should build trust and connection.
+Its job is to answer:
+
+who you are
+what shaped your perspective
+why you do this work
+what informs your approach
+Contact
+
+This page should be very simple.
+Its job is to make it easy to:
+
+send a message
+schedule a conversation
+connect on LinkedIn
+My recommendation
+
+Keep the navigation exactly that simple.
+
+You may later add:
+
+Writing / Resources
+Events / Courses
+Testimonials / Case Studies

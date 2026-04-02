@@ -1,0 +1,254 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.tsx';
+---
+
+<Layout
+  title="Contact — Lili David"
+  description="Get in touch with Lili David — facilitator, consultant, and coach."
+>
+
+  <section class="page-hero section">
+    <div class="container">
+      <span class="label">Contact</span>
+      <h1>Let&rsquo;s talk</h1>
+      <div class="divider mt-md"></div>
+      <p class="lead mt-md" style="max-width: 52ch;">
+        If you&rsquo;re trying to build a way of working that is both effective and human,
+        I&rsquo;d be glad to hear more about your context. There&rsquo;s no obligation —
+        an initial conversation is simply a chance to understand each other&rsquo;s situations.
+      </p>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap">
+          <h2 class="contact-form-title">Send a message</h2>
+          <ContactForm client:load />
+        </div>
+
+        <!-- ASIDE -->
+        <aside class="contact-aside">
+
+          <div id="schedule" class="aside-block">
+            <h3>Schedule a conversation</h3>
+            <p>
+              Prefer to find a time directly? You can book a 30-minute introductory
+              call using the link below.
+            </p>
+            <a
+              href="https://calendly.com/lilidavid"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--outline mt-sm"
+            >
+              Book a call &rarr;
+            </a>
+          </div>
+
+          <div class="aside-divider"></div>
+
+          <div class="aside-block">
+            <h3>Connect on LinkedIn</h3>
+            <p>
+              I&rsquo;m quite active on LinkedIn and regularly share reflections and practical
+              insights from my work with teams and organisations.
+            </p>
+            <a
+              href="https://www.linkedin.com/in/lilidavidis/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--outline mt-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              Follow on LinkedIn &#8599;
+            </a>
+          </div>
+
+          <div class="aside-divider"></div>
+
+          <div class="aside-block aside-note">
+            <p>
+              I aim to respond to all messages within two working days.
+              If your situation is time-sensitive, please mention it in your message.
+            </p>
+          </div>
+
+          <div class="aside-divider"></div>
+
+          <div class="aside-block aside-legal" aria-label="Company details">
+            <h3>Company details</h3>
+            <p class="aside-legal-line">CoherentOrgs SRL</p>
+            <p class="aside-legal-line">Str Ion Lahovari 23B/2, Dumbraveni, Romania</p>
+            <p class="aside-legal-line">Registration Number: RO54128042</p>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .contact-form-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+  }
+
+  /* Styles for the React form */
+  :global(.contact-form) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  :global(.form-row) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  :global(.required) {
+    color: var(--slate);
+  }
+
+  :global(.optional) {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  :global(.form-error) {
+    font-size: 0.9rem;
+    color: #b94a4a;
+    background: #fdf3f3;
+    border: 1px solid #e5bcbc;
+    padding: 0.75rem 1rem;
+    border-radius: 2px;
+    max-width: none;
+  }
+
+  :global(.form-success) {
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    border: 1px solid var(--eucalyptus-mid);
+    background: var(--eucalyptus-light);
+  }
+
+  :global(.form-success-icon) {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--eucalyptus);
+    color: white;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-sm);
+  }
+
+  :global(.form-success h3) {
+    margin-bottom: var(--space-xs);
+  }
+
+  :global(.form-success p) {
+    margin-inline: auto;
+  }
+
+  /* ASIDE */
+  .contact-aside {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-md));
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .aside-block {
+    padding: var(--space-md);
+    background: var(--stone-mid);
+    border: 1px solid var(--stone-dark);
+    border-bottom: none;
+  }
+
+  .aside-block:last-child {
+    border-bottom: 1px solid var(--stone-dark);
+  }
+
+  .aside-block h3 {
+    font-size: 1.05rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .aside-block p {
+    font-size: 0.9375rem;
+    max-width: none;
+  }
+
+  .aside-divider {
+    height: 0;
+  }
+
+  .aside-note {
+    background: transparent;
+    border: 1px solid var(--stone-dark);
+  }
+
+  .aside-note p {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .aside-legal {
+    background: transparent;
+    border: 1px solid var(--stone-dark);
+  }
+
+  .aside-legal h3 {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.5rem;
+  }
+
+  .aside-legal-line {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    font-style: normal;
+  }
+
+  .aside-legal-line + .aside-legal-line {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-aside {
+      position: static;
+    }
+
+    :global(.form-row) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

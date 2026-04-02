@@ -1,0 +1,21 @@
+homepage look
+Hero
+large serif headline
+clean sans subheadline
+lots of breathing room
+one subtle gradient wash behind the hero or behind the CTA block
+no giant photo needed at the top
+“Two extremes” section
+mirrored two-column layout
+each side with slightly different tint
+centered bridge statement underneath
+“Best of both” section
+overlap or blend the two tones
+use a soft gradient or interlocking cards
+Services
+structured card layout
+clean, practical, crisp
+slightly softened by warm neutrals
+About
+portrait or simple editorial image
+more warmth here than at the top

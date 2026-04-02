@@ -1,0 +1,22 @@
+---
+const currentPath = Astro.url.pathname;
+
+function isActive(path: string) {
+  if (path === '/') return currentPath === '/';
+  return currentPath.startsWith(path);
+}
+---
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="brand-name">Lili David</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class:list={[{ active: isActive('/') }]}>Home</a></li>
+      <li><a href="/working-together" class:list={[{ active: isActive('/working-together') }]}>Working Together</a></li>
+      <li><a href="/about" class:list={[{ active: isActive('/about') }]}>About</a></li>
+      <li><a href="/contact" class="nav-cta" class:list={[{ active: isActive('/contact') }]}>Get in touch</a></li>
+    </ul>
+  </div>
+</nav>
