@@ -690,6 +690,32 @@ import Layout from '../layouts/Layout.astro';
       grid-template-columns: 1fr;
     }
 
+    .about-hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .about-photo-wrap {
+      order: -1;
+      justify-self: center;
+      max-width: min(360px, 100%);
+      height: auto;
+      min-height: 0;
+      margin-bottom: var(--space-md);
+    }
+
+    .about-hero-copy {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    /* Desktop crop/scale targets a wide frame; on tablet/phone it leaves empty bands */
+    .about-photo {
+      object-position: center center;
+      transform: scale(1.04);
+      transform-origin: center center;
+    }
+
     .about-hero-copy .lead {
       max-width: 58ch;
     }
@@ -721,13 +747,22 @@ import Layout from '../layouts/Layout.astro';
       margin-inline: auto;
       margin-top: 0.75rem;
       margin-bottom: 1.25rem;
-      width: clamp(170px, 42vw, 240px);
-      min-width: unset;
+      width: 100%;
+      max-width: min(300px, 88vw);
+      min-width: 0;
       height: auto;
       max-height: none;
       aspect-ratio: 1 / 1;
       order: -1;
       top: 0;
+      align-self: center;
+      background-color: var(--stone-mid);
+    }
+    .about-photo {
+      object-fit: cover;
+      object-position: center 42%;
+      transform: none;
+      transform-origin: center center;
     }
     .about-hero-copy { text-align: center; height: auto; min-height: auto; }
     .about-hero-copy .lead { margin-inline: auto; margin-top: var(--space-md); }

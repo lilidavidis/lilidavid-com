@@ -287,15 +287,26 @@ import Layout from '../layouts/Layout.astro';
   <section class="section section--dark cta-section">
     <div class="container text-center" data-animate="fade-up">
       <h2 class="cta-headline" style="color: var(--stone);">
-        Let&rsquo;s talk <span aria-hidden="true">&#128172;</span>
+        Let&rsquo;s connect
       </h2>
-      <p class="lead mt-md" style="color: var(--stone-mid); margin-inline: auto;">
-        I&rsquo;d be glad to hear more about your context.
+      <p class="lead mt-md" style="color: var(--stone-mid); margin-inline: auto; max-width: 42ch;">
+        If you&rsquo;re working toward clearer collaboration and shared responsibility, you&rsquo;re welcome to
+        get in touch.
       </p>
       <div class="flex-row mt-lg" style="justify-content: center;">
-        <a href="/contact" class="btn btn--primary" style="background: var(--stone); color: var(--ink);">Get in touch</a>
-        <a href="/contact#schedule" class="btn btn--outline-light">Schedule a conversation</a>
+        <a
+          href="https://tidycal.com/lilidavid/exploratory-call"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn cta-btn-book"
+        >
+          Book a call
+        </a>
+        <a href="/contact" class="btn btn--outline-light cta-btn-message">Send me a message</a>
       </div>
+      <p class="mt-md" style="margin-bottom: 0;">
+        <a href="/about" class="cta-section-more">Find out more about me</a>
+      </p>
     </div>
   </section>
 
@@ -730,13 +741,21 @@ import Layout from '../layouts/Layout.astro';
       margin-inline: auto;
       margin-top: 0.75rem;
       margin-bottom: 1.25rem;
-      width: clamp(170px, 42vw, 240px);
-      min-width: unset;
+      width: 100%;
+      max-width: min(300px, 88vw);
+      min-width: 0;
       height: auto;
       max-height: none;
       aspect-ratio: 1 / 1;
       order: -1;
       top: 0;
+      background-color: var(--stone-mid);
+    }
+
+    .hero-photo {
+      object-position: center 35%;
+      transform: none;
+      transform-origin: center center;
     }
 
     .hero-headline,
@@ -1575,21 +1594,47 @@ import Layout from '../layouts/Layout.astro';
     100% { background-color: var(--slate); }
   }
 
-  .cta-section .btn--primary {
-    animation: ctaBtnBgShift 7.5s linear infinite;
+  .cta-btn-book {
+    background-color: var(--white);
+    color: var(--ink);
+    border: 1.5px solid var(--white);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
   }
 
-  @keyframes ctaBtnBgShift {
-    0% { background-color: var(--eucalyptus); }
-    50% { background-color: var(--slate); }
-    100% { background-color: var(--eucalyptus); }
+  .cta-btn-book:hover {
+    background-color: var(--stone);
+    border-color: var(--stone);
+    color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  .cta-section .cta-btn-message {
+    border-color: rgba(221, 214, 200, 0.55);
+  }
+
+  .cta-section .cta-btn-message:hover {
+    border-color: var(--stone);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .cta-section-more {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--stone-mid);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+    transition: color 0.2s var(--ease);
+  }
+
+  .cta-section-more:hover {
+    color: var(--stone);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .cta-section {
-      animation: none;
-    }
-    .cta-section .btn--primary {
       animation: none;
     }
   }
