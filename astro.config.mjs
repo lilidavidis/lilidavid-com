@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
-const site = process.env.SITE_URL;
+// Production domain; override with SITE_URL for previews/staging (e.g. Vercel preview URLs).
+const site = process.env.SITE_URL || 'https://lilidavid.com';
 
 export default defineConfig({
-  // Set SITE_URL in your hosting environment for production canonical/sitemap URLs.
   site,
-  integrations: site ? [react(), sitemap()] : [react()],
+  integrations: [sitemap()],
+  redirects: {
+    '/how-i-help': '/working-together',
+  },
 });

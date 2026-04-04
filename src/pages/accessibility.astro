@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+const updated = '4 April 2026';
+---
+
+<Layout
+  title="Accessibility — Lili David"
+  description="Accessibility commitment for lilidavid.com — barriers, standards, and how to get help."
+>
+
+  <section class="page-hero section a11y-hero">
+    <div class="container">
+      <span class="label">Inclusion</span>
+      <h1 class="mt-sm">Accessibility</h1>
+      <p class="lead mt-md a11y-intro">
+        This site is built so that as many people as possible can use it, including people who
+        rely on assistive technology or keyboard navigation.
+      </p>
+      <p class="a11y-updated">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <section class="section a11y-section">
+    <div class="container">
+      <div class="a11y-body">
+
+        <div class="a11y-block">
+          <h2>Our commitment</h2>
+          <p>
+            CoherentOrgs SRL aims for this website to conform to the
+            <a
+              href="https://www.w3.org/WAI/WCAG21/quickref/?versions=2.1&levels=aa"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WCAG 2.1 quick reference on W3C (opens in a new tab)"
+            >Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</a>
+            where reasonably achievable. We test with keyboard-only use, visible focus, semantic
+            HTML, and common browser zoom levels.
+          </p>
+        </div>
+
+        <div class="a11y-block">
+          <h2>What we have implemented</h2>
+          <ul class="a11y-list">
+            <li>Skip link to jump straight to the main content</li>
+            <li>Logical heading structure and descriptive link text where we control it</li>
+            <li>Form labels tied to inputs; error messages exposed to assistive technologies</li>
+            <li>Reduced-motion support for interface animations where applicable</li>
+            <li>Sufficient colour contrast for body text and interactive elements</li>
+          </ul>
+        </div>
+
+        <div class="a11y-block">
+          <h2>Known limitations</h2>
+          <p>
+            Some decorative motion and illustration effects remain on certain pages. If you use
+            &ldquo;Reduce motion&rdquo; in your system settings, many of these are toned down or disabled.
+            Third-party tools (for example booking or form services) have their own interfaces;
+            we cannot fully control their accessibility.
+          </p>
+        </div>
+
+        <div class="a11y-block">
+          <h2>Help us improve</h2>
+          <p>
+            If you encounter a barrier &mdash; a page that is hard to use with a screen reader,
+            missing focus, unclear labels, or anything else &mdash; please tell us. We will take
+            it seriously and do our best to fix it.
+          </p>
+          <p>
+            Email <a href="mailto:connect@lilidavid.com">connect@lilidavid.com</a> with
+            &ldquo;Accessibility&rdquo; in the subject line and, if you can, the page address and
+            what went wrong.
+          </p>
+        </div>
+
+        <div class="a11y-block">
+          <h2>Formal complaints</h2>
+          <p>
+            Depending on where you live and what laws apply to the service you are using, you may
+            have rights to raise accessibility concerns with a national equality body, consumer
+            organisation, or regulator. This site is a small-business professional presence; if you
+            need a formal route, check guidance for your country. This is general information only
+            and not legal advice.
+          </p>
+        </div>
+
+        <div class="a11y-block">
+          <h2>Related</h2>
+          <p>
+            <a href="/privacy">Privacy Policy</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .a11y-hero {
+    padding-bottom: var(--space-md);
+  }
+
+  .a11y-intro {
+    max-width: 60ch;
+  }
+
+  .a11y-updated {
+    margin-top: var(--space-sm);
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .a11y-section.section {
+    padding-top: var(--space-md);
+  }
+
+  .a11y-body {
+    max-width: 70ch;
+  }
+
+  .a11y-block {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--stone-dark);
+  }
+
+  .a11y-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .a11y-block h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+    line-height: 1.25;
+  }
+
+  .a11y-block p {
+    max-width: none;
+    margin-bottom: 0.85rem;
+  }
+
+  .a11y-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .a11y-block a {
+    color: #3F5648;
+    text-underline-offset: 0.18em;
+  }
+
+  .a11y-block a:hover {
+    color: var(--eucalyptus);
+  }
+
+  .a11y-list {
+    margin: var(--space-sm) 0 0;
+    padding-left: 1.25rem;
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .a11y-list li {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+</style>

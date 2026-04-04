@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Set SITE_URL to your production domain so Astro can generate sitemap-index.xml.
-Sitemap: /sitemap-index.xml
+Sitemap: https://lilidavid.com/sitemap-index.xml

@@ -1,7 +1,16 @@
 /* =========================================
-   FONTS
+   FONTS (self-hosted via fontsource)
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import '@fontsource/inter/latin-300.css';
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-500.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/playfair-display/latin-400.css';
+@import '@fontsource/playfair-display/latin-400-italic.css';
+@import '@fontsource/playfair-display/latin-500.css';
+@import '@fontsource/playfair-display/latin-500-italic.css';
+@import '@fontsource/playfair-display/latin-600.css';
+@import '@fontsource/playfair-display/latin-600-italic.css';
 
 /* =========================================
    DESIGN TOKENS
@@ -57,6 +66,68 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY — skip link & visible focus
+   (WCAG 2.1 — keyboard, 2.4.7 Focus Visible)
+   ========================================= */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -100px;
+  z-index: 10000;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--stone);
+  border: 2px solid var(--slate);
+  border-radius: 2px;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0.75rem;
+  outline: 2px solid var(--slate);
+  outline-offset: 2px;
+}
+
+/* Visible focus for keyboard users; avoid ring on mouse click where supported */
+a:focus-visible,
+button:focus-visible,
+.nav-toggle:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--slate);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible {
+  outline-offset: 3px;
+}
+
+.footer-links a:focus-visible {
+  outline-color: var(--stone);
+}
+
+/* Dark band CTAs (home, about, working-together closing): high-contrast focus ring */
+.cta-section a:focus-visible,
+.cta-section button:focus-visible,
+.hiw-cta-section a:focus-visible,
+.hiw-cta-section button:focus-visible {
+  outline-color: var(--stone-mid);
+  outline-offset: 3px;
 }
 
 body {
@@ -266,6 +337,67 @@ p.lead {
 }
 
 /* =========================================
+   SERVICE CARDS (home “three ways” + testimonial figures)
+   ========================================= */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+  border: 1px solid var(--stone-dark);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.service-card:hover {
+  border-color: var(--eucalyptus-mid);
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card {
+    transition: border-color 0.25s var(--ease);
+  }
+
+  .service-card:hover {
+    transform: none;
+  }
+}
+
+.service-card h3 {
+  margin-bottom: calc(var(--space-sm) + 0.45rem);
+  font-size: 1.52rem;
+  font-weight: 600;
+  line-height: 1.25;
+  position: relative;
+}
+
+.service-card p {
+  flex: 1;
+  position: relative;
+}
+
+.service-number {
+  position: absolute;
+  top: -0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 500;
+  color: rgba(200, 184, 154, 0.18);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.03em;
+  transition: color 0.25s var(--ease);
+}
+
+.service-card:hover .service-number {
+  color: rgba(200, 184, 154, 0.28);
+}
+
+/* =========================================
    FORM ELEMENTS
    ========================================= */
 .form-group {
@@ -291,7 +423,6 @@ p.lead {
   border: 1.5px solid var(--stone-dark);
   padding: 0.75rem 1rem;
   border-radius: 2px;
-  outline: none;
   transition: border-color 0.2s var(--ease);
   width: 100%;
 }
@@ -299,6 +430,17 @@ p.lead {
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--slate);
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid var(--slate);
+  outline-offset: 2px;
+}
+
+.form-input.form-input--error,
+.form-textarea.form-input--error {
+  border-color: #8a3a3a;
 }
 
 .form-textarea {
@@ -329,29 +471,66 @@ p.lead {
 /* =========================================
    NAV
    ========================================= */
-.site-nav {
+/*
+ * Drawer + backdrop live OUTSIDE .site-nav so they are not descendants of
+ * backdrop-filter (which would trap position:fixed to the 72px bar height).
+ */
+.site-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  height: var(--nav-height);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: var(--nav-height);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   background: rgba(244, 241, 235, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--stone-dark);
 }
 
-.nav-inner {
+/* Full-bleed bar; aligns logo + links with .container */
+.site-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1 1 auto;
   width: 100%;
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3rem);
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.nav-panel {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: auto;
+  min-width: 0;
 }
 
 .nav-logo {
@@ -486,15 +665,15 @@ p.lead {
   transition: transform 0.28s var(--ease), opacity 0.2s var(--ease);
 }
 
-.site-nav.is-open .nav-toggle-bar:nth-child(1) {
+.site-header.is-open .nav-toggle-bar:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
 
-.site-nav.is-open .nav-toggle-bar:nth-child(2) {
+.site-header.is-open .nav-toggle-bar:nth-child(2) {
   opacity: 0;
 }
 
-.site-nav.is-open .nav-toggle-bar:nth-child(3) {
+.site-header.is-open .nav-toggle-bar:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
@@ -511,6 +690,44 @@ body.nav-no-scroll {
     display: flex;
   }
 
+  /* Bar only on .site-nav; header shell stays transparent so drawer is not inside blur */
+  .site-header {
+    display: block;
+    height: auto;
+    max-width: none;
+    margin-inline: 0;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+  }
+
+  .site-header-inner {
+    display: block;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .site-nav {
+    position: relative;
+    z-index: 3;
+    height: var(--nav-height);
+    width: 100%;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+    box-sizing: border-box;
+    background: rgba(244, 241, 235, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--stone-dark);
+  }
+
+  .nav-inner {
+    width: 100%;
+  }
+
   .nav-backdrop {
     display: block;
     position: fixed;
@@ -518,7 +735,7 @@ body.nav-no-scroll {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 98;
+    z-index: 1;
     background: rgba(30, 37, 48, 0.38);
     opacity: 0;
     visibility: hidden;
@@ -526,23 +743,21 @@ body.nav-no-scroll {
     transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
   }
 
-  .site-nav.is-open .nav-backdrop {
+  .site-header.is-open .nav-backdrop {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
   }
 
-  .nav-links {
+  .nav-panel {
     position: fixed;
     top: var(--nav-height);
     right: 0;
     bottom: 0;
     width: min(20rem, 88vw);
     max-width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
+    min-height: calc(100dvh - var(--nav-height));
+    min-height: calc(100svh - var(--nav-height));
     margin: 0;
     padding: var(--space-md) var(--space-md) calc(var(--space-md) + env(safe-area-inset-bottom, 0px));
     background: rgba(244, 241, 235, 0.98);
@@ -550,14 +765,27 @@ body.nav-no-scroll {
     -webkit-backdrop-filter: blur(14px);
     border-left: 1px solid var(--stone-dark);
     box-shadow: -8px 0 32px rgba(30, 37, 48, 0.12);
-    z-index: 99;
+    z-index: 2;
     overflow-y: auto;
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.3s var(--ease), visibility 0.3s var(--ease);
+    align-items: stretch;
+    flex-direction: column;
+    box-sizing: border-box;
   }
 
-  .site-nav.is-open .nav-links {
+  .nav-panel .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    width: 100%;
+    flex: 1;
+    min-height: min-content;
+  }
+
+  .site-header.is-open .nav-panel {
     transform: translateX(0);
     visibility: visible;
   }
@@ -607,7 +835,7 @@ body.nav-no-scroll {
 }
 
 @media (max-width: 880px) and (prefers-reduced-motion: reduce) {
-  .nav-links,
+  .nav-panel,
   .nav-backdrop,
   .nav-toggle-bar {
     transition: none;
@@ -781,4 +1009,164 @@ body.nav-no-scroll {
   background: linear-gradient(to right, var(--slate), var(--eucalyptus));
   border: none;
   margin-block: 0;
+}
+
+/* =========================================
+   TESTIMONIALS
+   ========================================= */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--stone-dark);
+  border-left: 3px solid var(--eucalyptus);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-shadow: 0 4px 14px rgba(30, 37, 48, 0.06);
+}
+
+.testimonial-card--single {
+  max-width: 680px;
+  margin-inline: auto;
+  border-left-color: var(--slate);
+}
+
+.testimonial-mark {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  line-height: 0.75;
+  color: var(--eucalyptus);
+  display: block;
+  opacity: 0.48;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 0.55rem;
+}
+
+.testimonial-card--single .testimonial-mark {
+  color: var(--slate);
+}
+
+.testimonial-quote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  flex: 1;
+}
+
+.testimonial-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--ink);
+  max-width: none;
+  margin: 0;
+}
+
+.testimonial-attribution {
+  margin-top: var(--space-sm);
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--stone-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.testimonial-name {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.testimonial-role {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* Anonymous / role-only attribution (e.g. home single testimonial) */
+.testimonial-attribution--anonymous {
+  border-top: none;
+  padding-top: 0;
+  margin-top: var(--space-md);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial-byline {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+
+/* Service-card-styled testimonials (home + Working Together) */
+.service-card.testimonial-as-service-card {
+  text-align: center;
+}
+
+.testimonial-as-service-card {
+  margin-bottom: 0;
+  padding-inline: calc(var(--space-md) + 5px);
+  padding-bottom: calc(var(--space-lg) - 10px);
+}
+
+.testimonial-as-service-card--single {
+  max-width: calc(680px * 0.9);
+  margin-inline: auto;
+}
+
+.testimonials-grid .testimonial-as-service-card {
+  width: 100%;
+  max-width: none;
+}
+
+.testimonial-as-service-card .testimonial-quote {
+  flex: 1;
+}
+
+.testimonial-as-service-card .testimonial-mark {
+  font-size: 2.1rem;
+  line-height: 0.85;
+  opacity: 1;
+  color: var(--slate);
+  margin-bottom: 0.45rem;
+}
+
+.testimonial-as-service-card .testimonial-quote p {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.testimonial-as-service-card .testimonial-attribution {
+  margin-top: var(--space-md);
+  padding-top: 0;
+  border-top: none;
+}
+
+.testimonial-as-service-card .testimonial-attribution--anonymous {
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }

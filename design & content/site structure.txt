@@ -1,7 +1,7 @@
 Pages:
 
 Home
-How I help
+Working together
 About
 Contact
 
@@ -17,7 +17,7 @@ express your core positioning
 help visitors recognize their problem
 show your approach
 lead them toward contact
-How I help
+Working together
 
 This page goes deeper into:
 

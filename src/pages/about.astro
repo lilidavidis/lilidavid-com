@@ -218,7 +218,7 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section section--dark cta-section">
     <div class="container text-center" data-animate="fade-up">
-      <span class="label" style="color: var(--stone-dark);">Let&rsquo;s talk</span>
+      <span class="label" style="color: var(--stone-dark);">Get in touch</span>
       <h2 style="color: var(--stone);">Curious whether this could be useful?</h2>
       <p class="lead mt-md" style="color: var(--stone-mid); margin-inline: auto;">
         I&rsquo;m always glad to have an initial conversation — to hear about your context
@@ -227,7 +227,13 @@ import Layout from '../layouts/Layout.astro';
       <div class="flex-row mt-lg" style="justify-content: center;">
         <a href="/contact" class="btn btn--primary">Get in touch</a>
         <a href="/working-together" class="btn btn--outline-light">Working Together &rarr;</a>
-        <a href="https://www.linkedin.com/in/lilidavidis/" target="_blank" rel="noopener noreferrer" class="btn btn--outline-light">
+        <a
+          href="https://www.linkedin.com/in/lilidavidis/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline-light"
+          aria-label="LinkedIn profile (opens in a new tab)"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
@@ -288,6 +294,7 @@ import Layout from '../layouts/Layout.astro';
     if (pathSection && pathMedia && milestones) {
       let ticking = false;
       let activeImageIndex = 0;
+      const milestoneElems = Array.from(milestones.querySelectorAll('.milestone'));
       const updatePathMotion = () => {
         ticking = false;
         const rect = pathSection.getBoundingClientRect();
@@ -306,12 +313,18 @@ import Layout from '../layouts/Layout.astro';
           pathMedia.style.transform = 'none';
         }
 
-        // Switch images by scroll progress while preserving existing media motion.
-        if (pathImages.length > 1) {
-          // Keep the first image visible longer before advancing the sequence.
-          const imageSwitchStart = 0.44;
-          const imageProgress = Math.max(0, Math.min(1, (progress - imageSwitchStart) / (1 - imageSwitchStart)));
-          const nextIndex = Math.min(pathImages.length - 1, Math.floor(imageProgress * pathImages.length));
+        // Tie each photo to the matching timeline block: when that milestone's top
+        // reaches the vertical center of the image frame, switch (2nd image with 2nd paragraph).
+        if (pathImages.length > 1 && milestoneElems.length > 0) {
+          const mediaRect = pathMedia.getBoundingClientRect();
+          /* Sync line above center + px lag so the next photo appears later (more scroll). */
+          const anchorY = mediaRect.top + mediaRect.height * 0.34 - 36;
+          let milestoneIndex = 0;
+          for (let i = 0; i < milestoneElems.length; i++) {
+            const r = milestoneElems[i].getBoundingClientRect();
+            if (r.top <= anchorY) milestoneIndex = i;
+          }
+          const nextIndex = Math.min(milestoneIndex, pathImages.length - 1);
           if (nextIndex !== activeImageIndex) {
             pathImages[activeImageIndex]?.classList.remove('is-active');
             pathImages[nextIndex]?.classList.add('is-active');
@@ -567,7 +580,7 @@ import Layout from '../layouts/Layout.astro';
     box-shadow: 0 10px 22px rgba(40, 52, 58, 0.1);
     animation: tensionBgShift 7.5s linear infinite;
   }
-  .tension-card-icon { display: block; margin-bottom: var(--space-sm); color: #FFFFFF; }
+  .tension-card-icon { display: block; margin-bottom: var(--space-sm); color: var(--stone); }
   .tension-card-icon svg { width: 42px; height: 22px; display: block; }
   .tension-card p { font-family: var(--font-serif); font-style: italic; color: #EEE8DD; max-width: none; }
   .tension-card p {

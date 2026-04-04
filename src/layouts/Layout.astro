@@ -17,12 +17,16 @@ const siteBase = Astro.site ?? new URL(Astro.url.origin);
 const canonicalUrl = new URL(Astro.url.pathname, siteBase).toString();
 const ogImageUrl = new URL('/images/lili-hero.png', siteBase).toString();
 
+const siteWideDescription =
+  "Lili David — Facilitator, consultant, and coach helping organizations build ways of working that are both effective and humane.";
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Lili David",
   url: new URL('/', siteBase).toString(),
   inLanguage: "en",
+  description: siteWideDescription,
 };
 
 const personSchema = {
@@ -30,6 +34,7 @@ const personSchema = {
   "@type": "Person",
   name: "Lili David",
   url: new URL('/', siteBase).toString(),
+  image: ogImageUrl,
   sameAs: [
     "https://www.linkedin.com/in/lilidavidis/"
   ],
@@ -51,25 +56,45 @@ const personSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content="Portrait of Lili David" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="Lili David" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Portrait of Lili David" />
+
+    <meta name="theme-color" content="#F4F1EB" />
 
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <Nav />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      (function () {
+        var skip = document.querySelector('.skip-link');
+        var main = document.getElementById('main-content');
+        if (!skip || !main) return;
+        skip.addEventListener('click', function (e) {
+          e.preventDefault();
+          main.setAttribute('tabindex', '-1');
+          main.focus({ preventScroll: true });
+          main.scrollIntoView({ behavior: 'auto', block: 'start' });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', '#main-content');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

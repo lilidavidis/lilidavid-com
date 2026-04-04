@@ -7,51 +7,57 @@ function isActive(path: string) {
 }
 ---
 
-<nav class="site-nav" aria-label="Main navigation">
+<header class="site-header" id="site-header">
   <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">
-      <span class="brand-name">Lili David</span>
-    </a>
-    <button
-      type="button"
-      class="nav-toggle"
-      id="nav-toggle"
-      aria-expanded="false"
-      aria-controls="primary-nav"
-      aria-label="Open menu"
-    >
-      <span class="nav-toggle-bars" aria-hidden="true">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </span>
-    </button>
-    <ul class="nav-links" id="primary-nav" role="list">
-      <li><a href="/" class:list={[{ active: isActive('/') }]}>Home</a></li>
-      <li><a href="/working-together" class:list={[{ active: isActive('/working-together') }]}>Working Together</a></li>
-      <li><a href="/about" class:list={[{ active: isActive('/about') }]}>About</a></li>
-      <li>
-        <a href="/contact" class="nav-cta" class:list={[{ active: isActive('/contact') }]}>Get in touch</a>
-      </li>
-    </ul>
+  <div class="site-header-inner">
+    <div class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <span class="brand-name">Lili David</span>
+        </a>
+        <button
+          type="button"
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Open menu"
+        >
+          <span class="nav-toggle-bars" aria-hidden="true">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <nav class="nav-panel" id="primary-nav" aria-label="Main navigation">
+      <ul class="nav-links" role="list">
+        <li><a href="/" class:list={[{ active: isActive('/') }]}>Home</a></li>
+        <li><a href="/working-together" class:list={[{ active: isActive('/working-together') }]}>Working Together</a></li>
+        <li><a href="/about" class:list={[{ active: isActive('/about') }]}>About</a></li>
+        <li>
+          <a href="/contact" class="nav-cta" class:list={[{ active: isActive('/contact') }]}>Get in touch</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
 
 <script>
   function initMobileNav() {
-    const nav = document.querySelector('.site-nav');
+    const header = document.getElementById('site-header');
     const toggle = document.getElementById('nav-toggle');
     const backdrop = document.getElementById('nav-backdrop');
     const panel = document.getElementById('primary-nav');
-    if (!nav || !toggle || !backdrop || !panel) return;
+    if (!header || !toggle || !backdrop || !panel) return;
 
     const mq = window.matchMedia('(max-width: 880px)');
     let open = false;
 
     function setOpen(next: boolean) {
       open = next;
-      nav.classList.toggle('is-open', open);
+      header.classList.toggle('is-open', open);
       document.body.classList.toggle('nav-no-scroll', open);
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
@@ -71,7 +77,7 @@ function isActive(path: string) {
 
     const onMq = () => {
       if (!mq.matches) {
-        nav.classList.remove('is-open');
+        header.classList.remove('is-open');
         document.body.classList.remove('nav-no-scroll');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Open menu');
