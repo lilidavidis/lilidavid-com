@@ -1,4 +1,6 @@
 ---
+import { showClientStories } from '../config/site';
+
 const year = new Date().getFullYear();
 ---
 
@@ -13,6 +15,7 @@ const year = new Date().getFullYear();
         <a href="/">Home</a>
         <a href="/working-together">Working Together</a>
         <a href="/about">About</a>
+        {showClientStories && <a href="/client-stories">Client stories</a>}
         <a href="/contact">Contact</a>
         <a href="/privacy">Privacy Policy</a>
         <a href="/accessibility">Accessibility</a>

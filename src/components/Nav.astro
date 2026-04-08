@@ -1,4 +1,6 @@
 ---
+import { showClientStories } from '../config/site';
+
 const currentPath = Astro.url.pathname;
 
 function isActive(path: string) {
@@ -35,6 +37,9 @@ function isActive(path: string) {
       <ul class="nav-links" role="list">
         <li><a href="/" class:list={[{ active: isActive('/') }]}>Home</a></li>
         <li><a href="/working-together" class:list={[{ active: isActive('/working-together') }]}>Working Together</a></li>
+        {showClientStories && (
+          <li><a href="/client-stories" class:list={[{ active: isActive('/client-stories') }]}>Client stories</a></li>
+        )}
         <li><a href="/about" class:list={[{ active: isActive('/about') }]}>About</a></li>
         <li>
           <a href="/contact" class="nav-cta" class:list={[{ active: isActive('/contact') }]}>Get in touch</a>

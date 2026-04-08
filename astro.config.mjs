@@ -9,5 +9,7 @@ export default defineConfig({
   integrations: [sitemap()],
   redirects: {
     '/how-i-help': '/working-together',
+    '/case-studies': '/working-together',
+    '/client-stories': '/working-together',
   },
 });

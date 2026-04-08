@@ -110,19 +110,9 @@ import Layout from '../layouts/Layout.astro';
               decoding="async"
             />
             <img
-              src="/images/lili-about-path-2.jpg?v=20260401b"
-              alt="Lili David facilitating with visual tools"
-              class="path-image path-image--second"
-              data-path-image
-              onerror="this.onerror=null;this.src='/images/lili-about-front.png';"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <img
               src="/images/lili-about-path-3.jpg"
               alt="Lili David speaking on stage"
-              class="path-image"
+              class="path-image path-image--last"
               data-path-image
               onerror="this.onerror=null;this.src='/images/lili-about-front.png';"
               loading="lazy"
@@ -154,6 +144,20 @@ import Layout from '../layouts/Layout.astro';
                 organizational development. I&rsquo;m not loyal to one method. What matters
                 most to me is helping people find approaches that genuinely fit their
                 context and support healthier, more effective ways of working together.
+              </p>
+            </div>
+            <div class="milestone">
+              <p>
+                Over the last 10 years, I&rsquo;ve travelled widely to teach Sociocracy 3.0 in
+                many different contexts &mdash; from neuroscience and law to public institutions
+                &mdash; across Europe, South America, South Africa, and Asia.
+              </p>
+            </div>
+            <div class="milestone">
+              <p>
+                I&rsquo;ve worked more closely with SaaS and other service-based small to mid-sized companies,
+                as well as associations and nonprofits across Europe. These are the kinds of
+                environments where I can usually contribute most.
               </p>
             </div>
             <div class="milestone milestone--conclusion">
@@ -313,18 +317,15 @@ import Layout from '../layouts/Layout.astro';
           pathMedia.style.transform = 'none';
         }
 
-        // Tie each photo to the matching timeline block: when that milestone's top
-        // reaches the vertical center of the image frame, switch (2nd image with 2nd paragraph).
+        // Distribute image visibility evenly across scroll progress.
         if (pathImages.length > 1 && milestoneElems.length > 0) {
-          const mediaRect = pathMedia.getBoundingClientRect();
-          /* Sync line above center + px lag so the next photo appears later (more scroll). */
-          const anchorY = mediaRect.top + mediaRect.height * 0.34 - 36;
-          let milestoneIndex = 0;
-          for (let i = 0; i < milestoneElems.length; i++) {
-            const r = milestoneElems[i].getBoundingClientRect();
-            if (r.top <= anchorY) milestoneIndex = i;
-          }
-          const nextIndex = Math.min(milestoneIndex, pathImages.length - 1);
+          const maxImageIndex = pathImages.length - 1;
+          const progressPerImage = 1 / pathImages.length;
+          const imageTimingLead = 0.02;
+          const nextIndex = Math.min(
+            maxImageIndex,
+            Math.floor((delayed + imageTimingLead) / progressPerImage)
+          );
           if (nextIndex !== activeImageIndex) {
             pathImages[activeImageIndex]?.classList.remove('is-active');
             pathImages[nextIndex]?.classList.add('is-active');
@@ -611,12 +612,7 @@ import Layout from '../layouts/Layout.astro';
     opacity: 0;
     transition: opacity 0.45s var(--ease);
   }
-  .path-image--second {
-    transform: none;
-    object-position: center center;
-    transition: none;
-  }
-  .path-image:nth-of-type(3) {
+  .path-image--last {
     transform: translate(-40px, -15px) scale(1.43);
   }
   .path-image.is-active { opacity: 1; }
@@ -742,11 +738,7 @@ import Layout from '../layouts/Layout.astro';
       transform: scale(1.08);
     }
 
-    .path-image--second {
-      transform: none;
-    }
-
-    .path-image:nth-of-type(3) {
+    .path-image--last {
       transform: translate(-12px, -6px) scale(1.15);
     }
   }

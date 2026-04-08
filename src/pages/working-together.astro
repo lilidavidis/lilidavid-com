@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { showClientStories } from '../config/site';
 ---
 
 <Layout
@@ -182,7 +183,20 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- SYSTEMIC BLEND BAR — directly after the three service pillars -->
+  {showClientStories && (
+  <!-- CASE STUDIES CALLOUT -->
+  <section class="section case-callout-section">
+    <div class="container text-center" data-animate="fade-up">
+      <h2>See how this work plays out in <em class="accent-word">practice</em></h2>
+      <p class="lead mt-md" style="margin-inline: auto;">
+        Real examples of what working together looked like &mdash; and what changed.
+      </p>
+      <a href="/client-stories" class="btn btn--primary mt-md">View client stories &rarr;</a>
+    </div>
+  </section>
+  )}
+
+  <!-- SYSTEMIC BLEND BAR -->
   <div class="hiw-blend-bar">
     <div class="hiw-blend-bar-gradient" aria-hidden="true"></div>
     <div class="container">
@@ -236,7 +250,7 @@ import Layout from '../layouts/Layout.astro';
             </p>
           </blockquote>
           <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Operations lead</span>
+            <span class="testimonial-byline">Chimene, Marketing Lead</span>
           </figcaption>
         </figure>
         <figure class="service-card testimonial-as-service-card" data-animate="fade-up" data-delay="80">
@@ -249,7 +263,7 @@ import Layout from '../layouts/Layout.astro';
             </p>
           </blockquote>
           <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Leadership team member</span>
+            <span class="testimonial-byline">Mara, Senior Project Manager</span>
           </figcaption>
         </figure>
         <figure class="service-card testimonial-as-service-card" data-animate="fade-up" data-delay="160">
@@ -261,9 +275,116 @@ import Layout from '../layouts/Layout.astro';
             </p>
           </blockquote>
           <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Founder</span>
+            <span class="testimonial-byline">Vlad, Founder and President</span>
           </figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="text-center mb-lg" data-animate="fade-up">
+        <span class="label">Before we talk</span>
+        <h2>Common questions</h2>
+      </div>
+
+      <div class="faq-list" data-animate="fade-up">
+        <details class="faq-item">
+          <summary class="faq-question">How do I know which service I need?</summary>
+          <div class="faq-answer">
+            <p>
+              You don&rsquo;t need to know in advance. Many engagements combine facilitation, consulting,
+              and coaching as the work unfolds. A short initial conversation is usually enough to
+              clarify what kind of support would be most useful and where to begin.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Do you work remotely?</summary>
+          <div class="faq-answer">
+            <p>
+              Yes, most of my work is online. I&rsquo;m also open to selected in-person assignments
+              across Europe. I live near Barcelona, Spain, which can make travel-based work easier
+              for some clients.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">How long does a typical engagement last?</summary>
+          <div class="faq-answer">
+            <p>
+              It depends on the scope and what kind of support is needed. A facilitation engagement
+              might be a single session or a short series of meetings, while consulting and coaching
+              engagements often run for three to six months. In all cases, we define a clear scope
+              together based on your situation.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What kind of organizations do you have experience with?</summary>
+          <div class="faq-answer">
+            <p>
+              I&rsquo;ve worked with SaaS and other service-based small to mid-sized companies, as
+              well as associations and nonprofits across Europe. These are the kinds of environments
+              where I can usually contribute most.
+            </p>
+            <p>
+              I&rsquo;ve also taught Sociocracy 3.0 in many different contexts &mdash; from neuroscience
+              and law to public institutions &mdash; across Europe, South America, South Africa, and Asia.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What size of organization do you work with?</summary>
+          <div class="faq-answer">
+            <p>
+              I&rsquo;ve worked with teams and organizations of different sizes, but I generally prefer
+              working with small to mid-sized organizations, up to around 200 people. What matters
+              most, though, is not size but a genuine willingness to look at how things work and try
+              something different.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What can I expect in terms of fees?</summary>
+          <div class="faq-answer">
+            <p>
+              My fees typically range from &euro;70 to &euro;200 per hour, depending on the type of
+              assignment, its duration, and your particular context. If I believe I&rsquo;m the right
+              person to support you, I don&rsquo;t want money alone to be the reason we don&rsquo;t work
+              together, so I&rsquo;m open to discussing what feels viable.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What does a first conversation look like?</summary>
+          <div class="faq-answer">
+            <p>
+              It&rsquo;s a free, informal call where I learn more about your situation and we explore
+              whether and how I might help. There&rsquo;s no commitment and no sales pitch &mdash; just
+              a chance to see whether working together feels like a good fit.
+            </p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">What if we&rsquo;re not sure what the problem is?</summary>
+          <div class="faq-answer">
+            <p>
+              That&rsquo;s a very good place to start. Part of my work is helping you understand more
+              clearly what&rsquo;s going on before deciding what to do about it. Often, clarity about
+              the real issue is what makes the next step possible.
+            </p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -282,15 +403,9 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="hiw-cta-actions mt-lg">
         <div class="hiw-cta-actions-row">
-          <a
-            href="https://tidycal.com/lilidavid/exploratory-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn hiw-cta-btn-white"
-            aria-label="Book a call — opens TidyCal in a new tab"
-          >
+          <button type="button" class="btn hiw-cta-btn-white" data-open-booking>
             Book a call
-          </a>
+          </button>
           <a href="/contact" class="btn btn--outline-light hiw-cta-btn-message">Send me a message</a>
         </div>
         <div class="hiw-cta-linkedin-row">
@@ -682,6 +797,15 @@ import Layout from '../layouts/Layout.astro';
     max-width: 20ch;
     margin-inline: auto;
     text-align: center;
+  }
+
+  /* Default --stone band (same as non-alt sections site-wide) */
+  .case-callout-section {
+    background-color: var(--stone);
+  }
+
+  .faq-section {
+    background-color: var(--stone);
   }
 
   /* Slightly darker than adjacent training (body --stone) for clear separation */

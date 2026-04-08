@@ -1,0 +1,547 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { clientStories, SERVICE_TAG_LABELS } from '../data/clientStories';
+---
+
+<Layout
+  title="Client stories — Lili David"
+  description="Real examples of how facilitation, consulting, and coaching helped organizations improve clarity, collaboration, and effectiveness."
+>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero section">
+    <div class="container">
+      <h1 class="hero-anim hero-anim--1">Client <em class="accent-word">stories</em></h1>
+      <p class="lead mt-md hero-anim hero-anim--2">
+        Every organization is different, but the patterns are often familiar. Here are a few
+        examples of the kind of work I&rsquo;ve done, and the changes that followed.
+      </p>
+    </div>
+  </section>
+
+  <div class="wave-wrap" aria-hidden="true">
+    <div class="wave-clip">
+      <svg id="cs-accent-wave-svg" xmlns="http://www.w3.org/2000/svg" height="16">
+        <defs>
+          <linearGradient id="csWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#5B7E6F" />
+            <stop offset="100%" stop-color="#4A6B8A" />
+          </linearGradient>
+        </defs>
+        <path
+          id="cs-accent-wave-path"
+          fill="none"
+          stroke="url(#csWaveGrad)"
+          stroke-width="2"
+          stroke-linecap="butt"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <div class="client-stories-main">
+  <!-- CASE STUDY INDEX -->
+  <section class="section section--alt cs-toc-section" aria-labelledby="cs-toc-heading">
+    <div class="container">
+      <h2 id="cs-toc-heading" class="cs-toc-heading" data-animate="fade-up">All stories</h2>
+      <p class="cs-toc-intro mt-sm" data-animate="fade-up">
+        Jump to a story that matches what you&rsquo;re curious about.
+      </p>
+      <nav class="cs-toc-nav mt-sm" aria-label="Stories on this page" data-animate="fade-up">
+        <ul class="cs-toc-list">
+          {clientStories.map((story) => (
+            <li>
+              <a class="cs-toc-link" href={`#${story.id}`}>{story.title}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {clientStories.map((story, index) => (
+    <section
+      id={story.id}
+      class:list={['section', 'case-study-section', { 'section--alt': index % 2 === 1 }]}
+      aria-labelledby={`${story.id}-title`}
+    >
+      <div class="container">
+        <article class="case-study-article" data-animate="fade-up">
+          <header class="case-study-header">
+            <ul class="case-study-tags" aria-label="Services">
+              {story.tags.map((tag) => (
+                <li>
+                  <span class="case-study-service-tag">{SERVICE_TAG_LABELS[tag]}</span>
+                </li>
+              ))}
+            </ul>
+            <h2 id={`${story.id}-title`}>{story.title}</h2>
+            <p class="case-study-dek">{story.clientSubtitle}</p>
+          </header>
+
+          <div class="case-study-body">
+            <h3 class="subsection-label mt-lg">The challenge</h3>
+            {story.challenge.map((paragraph) => (
+              <p class="mt-sm">{paragraph}</p>
+            ))}
+
+            <h3 class="subsection-label">The approach</h3>
+            {story.approach.map((paragraph) => (
+              <p class="mt-sm">{paragraph}</p>
+            ))}
+
+            <h3 class="subsection-label">What changed</h3>
+            <ul class="outcomes-list outcomes-right case-study-outcomes mt-sm">
+              {story.outcomes.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+  ))}
+
+  <!-- CLOSING CTA -->
+  <section class="section cs-cta-section">
+    <div class="container text-center" data-animate="fade-up">
+      <h2 class="cs-cta-heading">Recognise something familiar?</h2>
+      <p class="lead mt-md cs-cta-lead">
+        If any of these situations resonate, I&rsquo;d be happy to explore what might help
+        in your context.
+      </p>
+      <div class="cs-cta-actions mt-lg">
+        <button type="button" class="btn cs-cta-btn-white" data-open-booking>
+          Book a call
+        </button>
+        <a href="/contact" class="btn btn--outline-light cs-cta-btn-message">Send me a message</a>
+      </div>
+    </div>
+  </section>
+  </div>
+
+</Layout>
+
+<style is:global>
+  @keyframes cs-heroFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes cs-ctaBgShift {
+    0%, 100% { background-color: #4A6B8A; }
+    50%      { background-color: #5B7E6F; }
+  }
+</style>
+
+<script>
+  const targets = document.querySelectorAll('[data-animate]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = parseInt(el.dataset.delay ?? '0', 10);
+          setTimeout(() => el.classList.add('is-visible'), delay);
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -20px 0px' }
+  );
+  targets.forEach((el) => observer.observe(el));
+
+  // Animated wave divider under hero
+  (function () {
+    const svg = document.getElementById('cs-accent-wave-svg') as SVGSVGElement | null;
+    const path = document.getElementById('cs-accent-wave-path') as SVGPathElement | null;
+    const clip = document.querySelector('.wave-clip') as HTMLElement | null;
+    if (!svg || !path || !clip) return;
+
+    const reducedMotionWave = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotionWave) return;
+
+    requestAnimationFrame(() => {
+      const W = (clip.parentElement as HTMLElement).getBoundingClientRect().width || window.innerWidth;
+      const H = 24;
+      const CY = -2;
+      const AMPLITUDE = 4.6;
+      const POINTS = 180;
+
+      svg.setAttribute('width', String(W));
+      svg.setAttribute('height', String(H));
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+      function buildFlatPath(): string {
+        const pts: string[] = [];
+        for (let i = 0; i <= POINTS; i++) {
+          const x = (i / POINTS) * W;
+          pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${CY.toFixed(2)}`);
+        }
+        return pts.join(' ');
+      }
+
+      function buildWavePacketPath(p: number): string {
+        const pts: string[] = [];
+        const centerX = W * (0.32 + 0.48 * p);
+        const packetWidth = W * 0.34;
+        const cycles = 4.5;
+        for (let i = 0; i <= POINTS; i++) {
+          const x = (i / POINTS) * W;
+          const dx = x - centerX;
+          const tNorm = dx / (packetWidth / 2);
+          const envelope = Math.exp(-Math.pow(tNorm, 2) * 2.2);
+          const wave = Math.sin(((dx + packetWidth / 2) / packetWidth) * Math.PI * 2 * cycles);
+          const y = CY + AMPLITUDE * wave * envelope;
+          pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`);
+        }
+        return pts.join(' ');
+      }
+
+      function easeInOut(t: number): number {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      }
+
+      path.setAttribute('d', buildFlatPath());
+      clip.style.opacity = '0';
+      clip.style.transform = 'translateX(0)';
+
+      const FADE_DELAY = 700;
+      const FADE_DURATION = 700;
+      const MORPH_DURATION = 2100;
+      const HOLD_DURATION = 650;
+      const EXIT_DURATION = 1200;
+
+      type Phase = 'waiting' | 'fading' | 'morphing' | 'holding' | 'exiting' | 'done';
+      let phase: Phase = 'waiting';
+      let phaseStart = 0;
+      let animStart: number | null = null;
+
+      function tick(ts: number) {
+        if (animStart === null) animStart = ts;
+
+        if (phase === 'waiting') {
+          if (ts - animStart >= FADE_DELAY) { phase = 'fading'; phaseStart = ts; }
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        if (phase === 'fading') {
+          const t = Math.min((ts - phaseStart) / FADE_DURATION, 1);
+          const eased = easeInOut(t);
+          clip.style.opacity = String(eased);
+          if (t < 1) { requestAnimationFrame(tick); return; }
+          clip.style.opacity = '1';
+          phase = 'morphing';
+          phaseStart = ts;
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        if (phase === 'morphing') {
+          const t = Math.min((ts - phaseStart) / MORPH_DURATION, 1);
+          path.setAttribute('d', buildWavePacketPath(easeInOut(t)));
+          if (t < 1) { requestAnimationFrame(tick); return; }
+          phase = 'holding';
+          phaseStart = ts;
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        if (phase === 'holding') {
+          if (ts - phaseStart >= HOLD_DURATION) { phase = 'exiting'; phaseStart = ts; }
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        if (phase === 'exiting') {
+          const t = Math.min((ts - phaseStart) / EXIT_DURATION, 1);
+          const eased = t * t;
+          clip.style.transform = `translateX(${110 * eased}%)`;
+          clip.style.opacity = String(Math.max(0, 1 - eased * 1.4));
+          if (t < 1) { requestAnimationFrame(tick); return; }
+          phase = 'done';
+        }
+      }
+
+      requestAnimationFrame(tick);
+    });
+  })();
+</script>
+
+<style>
+  .accent-word {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-anim          { animation: cs-heroFadeUp 0.9s ease both; }
+  .hero-anim--1       { animation-delay: 0.15s; }
+  .hero-anim--2       { animation-delay: 0.38s; }
+
+  .page-hero h1 { margin-top: 0; }
+
+  .wave-wrap {
+    width: 100%;
+    height: 0;
+    overflow: visible;
+    display: block;
+    background: transparent;
+    position: relative;
+    margin: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  .wave-clip {
+    width: 100%;
+    height: 24px;
+    overflow: visible;
+    transform: translateY(-15px);
+  }
+
+  #cs-accent-wave-svg {
+    display: block;
+    overflow: visible;
+  }
+
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+
+  [data-animate].is-visible { opacity: 1; transform: none; }
+
+  .subsection-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-xs);
+    line-height: 1.3;
+  }
+
+  /* Full width within .container (same max-width + padding as site header); override global p { max-width: 62ch } */
+  .client-stories-main p {
+    max-width: none;
+  }
+
+  .client-stories-main .lead {
+    max-width: none;
+  }
+
+  /* Table of contents */
+  .cs-toc-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 3vw, 1.75rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .cs-toc-intro {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: none;
+  }
+
+  .cs-toc-list {
+    list-style: disc;
+    margin: 0;
+    padding: 0 0 0 1.35rem;
+    max-width: none;
+  }
+
+  .cs-toc-list li {
+    margin: 0.4rem 0;
+    padding-left: 0.35rem;
+  }
+
+  .cs-toc-list li::marker {
+    color: var(--slate);
+  }
+
+  .cs-toc-link {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.4;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--slate) 45%, transparent);
+    text-underline-offset: 0.18em;
+    transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease);
+  }
+
+  .cs-toc-link:hover {
+    color: var(--slate);
+    text-decoration-color: var(--slate);
+  }
+
+  .cs-toc-link:focus-visible {
+    outline: 2px solid var(--slate);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Case study sections — anchor offset under fixed nav */
+  .case-study-section {
+    scroll-margin-top: calc(var(--nav-height) + var(--space-md));
+  }
+
+  .case-study-article {
+    max-width: none;
+  }
+
+  .case-study-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--stone-dark);
+    margin-bottom: var(--space-md);
+  }
+
+  .case-study-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .case-study-tags li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .case-study-service-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.84rem;
+    background-color: var(--slate);
+    color: var(--stone);
+    font-family: var(--font-serif);
+    font-size: inherit;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    line-height: 1;
+    animation: logoBgShift 7s linear infinite;
+  }
+
+  .case-study-dek {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+  }
+
+  .case-study-body {
+    margin-top: 0;
+  }
+
+  .case-study-body p {
+    max-width: none;
+  }
+
+  .case-study-outcomes {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .case-study-outcomes li {
+    color: var(--ink-soft);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    padding: 0.2rem 0;
+  }
+
+  .case-study-outcomes li::before {
+    content: '◆';
+    color: color-mix(in srgb, var(--eucalyptus) 60%, var(--slate) 40%);
+    font-size: 0.58rem;
+    margin-right: 0.7rem;
+    flex-shrink: 0;
+    font-weight: 400;
+    margin-top: 0.35em;
+  }
+
+  /* CTA */
+  .cs-cta-section {
+    padding-block: var(--space-2xl);
+    background-color: #4A6B8A;
+    animation: cs-ctaBgShift 7.5s linear infinite;
+  }
+
+  .cs-cta-heading {
+    color: #F4F1EB;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .cs-cta-lead {
+    color: #DDD6C8;
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .cs-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.65rem 0.85rem;
+  }
+
+  .cs-cta-btn-white {
+    background-color: var(--white);
+    color: var(--ink);
+    border: 1.5px solid var(--white);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .cs-cta-btn-white:hover {
+    background-color: var(--stone);
+    border-color: var(--stone);
+    color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  }
+
+  .cs-cta-section .cs-cta-btn-message {
+    border-color: rgba(221, 214, 200, 0.55);
+  }
+
+  .cs-cta-section .cs-cta-btn-message:hover {
+    border-color: var(--stone);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .cs-cta-section {
+      animation: none !important;
+    }
+    .case-study-service-tag {
+      animation: none;
+    }
+  }
+</style>

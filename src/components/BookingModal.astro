@@ -1,0 +1,174 @@
+---
+/**
+ * TidyCal embed: opened from any [data-open-booking] control.
+ * Script loads on first open so the widget initializes after the dialog is visible.
+ */
+---
+
+<dialog id="booking-dialog" class="booking-dialog" aria-labelledby="booking-dialog-title">
+  <div class="booking-dialog__backdrop" data-close-booking>
+    <div class="booking-dialog__panel" role="document">
+      <header class="booking-dialog__header">
+        <h2 id="booking-dialog-title" class="booking-dialog__title">Book a call</h2>
+        <button
+          type="button"
+          class="booking-dialog__close"
+          data-close-booking
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+      <div class="booking-dialog__embed">
+        <div class="tidycal-embed" data-path="lilidavid/exploratory-call"></div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    const dialog = document.getElementById('booking-dialog');
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    let tidycalScriptRequested = false;
+
+    function loadTidyCalEmbed() {
+      if (tidycalScriptRequested) return;
+      tidycalScriptRequested = true;
+      const src = 'https://asset-tidycal.b-cdn.net/js/embed.js';
+      if (document.querySelector(`script[src="${src}"]`)) return;
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      document.body.appendChild(s);
+    }
+
+    function openBooking() {
+      loadTidyCalEmbed();
+      dialog.showModal();
+      const closeBtn = dialog.querySelector('.booking-dialog__close');
+      if (closeBtn instanceof HTMLElement) closeBtn.focus();
+    }
+
+    function closeBooking() {
+      dialog.close();
+    }
+
+    document.querySelectorAll('[data-open-booking]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openBooking();
+      });
+    });
+
+    dialog.querySelectorAll('[data-close-booking]').forEach((el) => {
+      el.addEventListener('click', () => closeBooking());
+    });
+
+    const panel = dialog.querySelector('.booking-dialog__panel');
+    if (panel) {
+      panel.addEventListener('click', (e) => e.stopPropagation());
+    }
+  })();
+</script>
+
+<style>
+  .booking-dialog {
+    border: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
+  .booking-dialog::backdrop {
+    background: rgba(26, 32, 36, 0.55);
+  }
+
+  .booking-dialog__backdrop {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 2rem);
+    box-sizing: border-box;
+  }
+
+  .booking-dialog__panel {
+    position: relative;
+    /* Wide enough for TidyCal’s calendar + controls without cramped inner scrolling */
+    width: min(100%, min(96vw, 960px));
+    max-height: min(98dvh, 1200px);
+    display: flex;
+    flex-direction: column;
+    background: var(--stone);
+    border-radius: 2px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .booking-dialog__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1rem 0.75rem 1.25rem;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .booking-dialog__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .booking-dialog__close {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--ink-soft);
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: color 0.15s var(--ease), background-color 0.15s var(--ease);
+  }
+
+  .booking-dialog__close:hover {
+    color: var(--ink);
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .booking-dialog__close:focus-visible {
+    outline: 2px solid var(--slate);
+    outline-offset: 2px;
+  }
+
+  .booking-dialog__embed {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 0.75rem clamp(0.75rem, 2vw, 1.25rem) 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* TidyCal injects content into .tidycal-embed */
+  .booking-dialog__embed :global(.tidycal-embed) {
+    min-height: 360px;
+  }
+</style>

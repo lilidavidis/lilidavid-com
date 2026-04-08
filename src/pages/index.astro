@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { showClientStories } from '../config/site';
 ---
 
 <Layout
@@ -190,11 +191,6 @@ import Layout from '../layouts/Layout.astro';
           <a href="/working-together#coaching" class="service-link">Learn more &rarr;</a>
         </div>
       </div>
-
-      <p class="services-framing mt-lg text-center" style="margin-inline: auto;" data-animate="fade-up">
-        Across all three, I bring a systemic lens and pay attention to the patterns
-        and conditions that shape how people work together.
-      </p>
     </div>
   </section>
 
@@ -265,6 +261,48 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 
+  {showClientStories && (
+  <!-- ===================================================
+       CASE STUDY PREVIEWS
+       =================================================== -->
+  <section class="section case-previews-section">
+    <div class="container">
+      <div class="text-center mb-lg" data-animate="fade-up">
+        <span class="label">In practice</span>
+        <h2>How this looks in <em class="accent-word">real</em> organizations</h2>
+        <p class="mt-md case-previews-intro">
+          I&rsquo;ve worked with SaaS and other service-based small to mid-sized companies, as well as
+          associations and nonprofits across Europe.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <a href="/client-stories#growing-organization-decisions" class="service-card case-preview-card" data-animate="fade-up" data-delay="0">
+          <span class="case-preview-tag">Consulting</span>
+          <h3>A growing organization where decisions kept falling through the cracks</h3>
+          <span class="service-link">Read the full story &rarr;</span>
+        </a>
+
+        <a href="/client-stories#leadership-retreat-trust-direction" class="service-card case-preview-card" data-animate="fade-up" data-delay="100">
+          <span class="case-preview-tag">Facilitation</span>
+          <h3>A leadership retreat that needed to rebuild trust and direction</h3>
+          <span class="service-link">Read the full story &rarr;</span>
+        </a>
+
+        <a href="/client-stories#founder-leadership-coaching" class="service-card case-preview-card" data-animate="fade-up" data-delay="200">
+          <span class="case-preview-tag">Coaching</span>
+          <h3>A founder whose leadership style was creating the very problems they wanted to solve</h3>
+          <span class="service-link">Read the full story &rarr;</span>
+        </a>
+      </div>
+
+      <p class="text-center mt-lg" data-animate="fade-up">
+        <a href="/client-stories" class="service-link">See all client stories &rarr;</a>
+      </p>
+    </div>
+  </section>
+  )}
+
   <!-- ===================================================
        6. BIO / CREDIBILITY
        =================================================== -->
@@ -289,15 +327,10 @@ import Layout from '../layouts/Layout.astro';
           <span class="label">About</span>
           <h2 class="bio-headline">What shapes my perspective</h2>
           <p class="mt-md">
-            I came to this work through socially oriented and nonprofit projects, where I saw how often
-            good intentions were undermined by unhealthy dynamics, fuzzy roles, and meetings with little
-            traction. That experience set me on a path toward ways of working that do not force a choice
-            between inclusion and effectiveness.
-          </p>
-          <p class="mt-sm">
-            Discovering sociocracy in 2014, and soon after joining the Sociocracy 3.0 development team,
-            gave me a practical way forward. It became an important strand in the work I&rsquo;ve continued to
-            deepen over the years..
+            My path into this work began in nonprofit and socially oriented projects, where I saw how
+            often good intentions were undermined by fuzzy roles, draining meetings, and unhealthy dynamics.
+            Discovering sociocracy &mdash; and joining the Sociocracy 3.0 development team in 2015 &mdash;
+            gave me a practical framework that I&rsquo;ve continued to build on ever since.
           </p>
           <a href="/about" class="service-link mt-md">More about me &rarr;</a>
         </div>
@@ -316,7 +349,7 @@ import Layout from '../layouts/Layout.astro';
           <p>Lili came at exactly the right time. Her grounded presence, sharp observations, and fresh perspective brought greater clarity and real stability to the team. Her impact was also visible in the founder &mdash; in a shift in attitude, better communication, and new perspectives that made him much easier to relate to and work with.</p>
         </blockquote>
         <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-          <span class="testimonial-byline">Leadership team member</span>
+          <span class="testimonial-byline">Anna, Leadership Team Member</span>
         </figcaption>
       </figure>
     </div>
@@ -334,15 +367,9 @@ import Layout from '../layouts/Layout.astro';
         I&rsquo;m looking forward to learning about what you&rsquo;d like to improve.
       </p>
       <div class="flex-row mt-lg" style="justify-content: center;">
-        <a
-          href="https://tidycal.com/lilidavid/exploratory-call"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn cta-btn-book"
-          aria-label="Book a call — opens TidyCal in a new tab"
-        >
+        <button type="button" class="btn cta-btn-book" data-open-booking>
           Book a call
-        </a>
+        </button>
         <a href="/contact" class="btn btn--outline-light cta-btn-message">Send me a message</a>
       </div>
       <p class="mt-md" style="margin-bottom: 0;">
@@ -1392,15 +1419,6 @@ import Layout from '../layouts/Layout.astro';
     color: var(--eucalyptus-dark);
   }
 
-  .services-framing {
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--ink-soft);
-    font-family: var(--font-serif);
-    max-width: 60ch;
-    margin-inline: 0;
-  }
-
   @media (max-width: 900px) {
     .services-grid { grid-template-columns: 1fr; }
   }
@@ -1490,9 +1508,9 @@ import Layout from '../layouts/Layout.astro';
      ============================================= */
   .bio-inner {
     display: grid;
-    grid-template-columns: minmax(340px, 40%) 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
+    grid-template-columns: minmax(300px, 38%) 1fr;
+    gap: clamp(2rem, 4vw, 3.25rem);
+    align-items: center;
   }
 
   .bio-section {
@@ -1535,27 +1553,27 @@ import Layout from '../layouts/Layout.astro';
 
   .bio-image-stack {
     width: 100%;
-    max-width: 520px;
-    aspect-ratio: 16 / 10;
+    max-width: 480px;
+    aspect-ratio: 2 / 1;
     overflow: hidden;
     box-shadow: 0 8px 22px rgba(30, 37, 48, 0.12);
   }
 
   .bio-media {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
   }
 
   .bio-photo-quote {
-    margin-top: 2.8rem;
+    margin-top: 1.25rem;
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1.4rem;
+    font-size: clamp(1.05rem, 1.65vw, 1.2rem);
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 1.45;
     color: var(--ink);
-    max-width: 46ch;
-    padding-inline: 1.25rem;
+    max-width: 38ch;
+    padding-inline: calc(0.75rem + 10px);
     text-align: center;
   }
 
@@ -1576,14 +1594,18 @@ import Layout from '../layouts/Layout.astro';
     .bio-inner {
       grid-template-columns: 1fr;
       gap: var(--space-md);
+      align-items: start;
     }
     .bio-media { max-width: 100%; margin-inline: auto; }
-    .bio-image-stack { max-width: 100%; }
+    .bio-image-stack {
+      max-width: 100%;
+      aspect-ratio: 16 / 10;
+    }
     .bio-photo-quote {
       margin-top: 1.6rem;
       font-size: 1.15rem;
       line-height: 1.5;
-      padding-inline: 0.4rem;
+      padding-inline: calc(0.4rem + 10px);
       max-width: 36ch;
       margin-inline: auto;
     }

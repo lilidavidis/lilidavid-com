@@ -125,7 +125,9 @@ select:focus-visible {
 .cta-section a:focus-visible,
 .cta-section button:focus-visible,
 .hiw-cta-section a:focus-visible,
-.hiw-cta-section button:focus-visible {
+.hiw-cta-section button:focus-visible,
+.cs-cta-section a:focus-visible,
+.cs-cta-section button:focus-visible {
   outline-color: var(--stone-mid);
   outline-offset: 3px;
 }
@@ -1169,4 +1171,118 @@ body.nav-no-scroll {
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================================
+   CASE STUDY PREVIEW CARDS (homepage)
+   ========================================= */
+/* Matches default body <p> like the outcomes intro (“The goal is not only…”): size, color, line-height from global p */
+.case-previews-intro {
+  margin-bottom: 0;
+}
+
+.case-previews-section {
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(70, 92, 80, 0.04) 0%,
+      rgba(244, 241, 235, 0) 100%
+    );
+}
+
+a.case-preview-card {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.case-preview-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: var(--space-xs);
+}
+
+.case-preview-card h3 {
+  font-size: 1.2rem;
+  line-height: 1.38;
+  font-weight: 500;
+}
+
+.case-preview-card .service-link {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+}
+
+/* =========================================
+   FAQ (working-together page)
+   ========================================= */
+.faq-list {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--stone-dark);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question::after {
+  content: '+';
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1;
+  transition: transform 0.25s var(--ease);
+}
+
+.faq-item[open] .faq-question::after {
+  content: '\2212';
+  transform: rotate(180deg);
+}
+
+.faq-question:hover {
+  color: var(--slate);
+}
+
+.faq-answer {
+  padding-bottom: var(--space-md);
+  padding-top: 0;
+}
+
+.faq-answer p {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: none;
+  margin: 0;
 }

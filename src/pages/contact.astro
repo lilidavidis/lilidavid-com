@@ -162,17 +162,15 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
             <h3>Schedule a conversation</h3>
             <p>
               Prefer to find a time directly? You can book a 45 minute exploratory
-              call using the link below.
+              call using the scheduler below.
             </p>
-            <a
-              href="https://tidycal.com/lilidavid/exploratory-call"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               class="btn btn--primary mt-sm contact-aside-btn"
-              aria-label="Book a call — opens TidyCal in a new tab"
+              data-open-booking
             >
               Book a call &rarr;
-            </a>
+            </button>
           </div>
 
           <div class="service-card">
