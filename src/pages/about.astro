@@ -1,25 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { rich } from '../lib/content';
+import copy from '../content/about.json';
 ---
 
-<Layout
-  title="About — Lili David"
-  description="Lili David — facilitator, consultant, and coach. About her work, her approach, and what shapes her perspective."
->
+<Layout title={copy.metaTitle} description={copy.metaDescription}>
 
   <!-- HERO -->
   <section class="about-hero">
     <div class="container about-hero-inner">
       <div class="about-hero-copy">
-        <h1 class="hero-anim hero-anim--2">
-          Where thoughtful <em class="accent-word">structure</em> meets
-          the reality of human <em class="accent-word">relationships</em>
-        </h1>
-        <p class="lead mt-md hero-anim hero-anim--3">
-          I work with people and organizations who want to build ways of working that are both
-          effective and deeply human. My focus is on the structures, habits, and relationships
-          that allow clarity, participation, and shared responsibility to coexist in practice.
-        </p>
+        <h1 class="hero-anim hero-anim--2" set:html={rich(copy.hero.headline)} />
+        <p class="lead mt-md hero-anim hero-anim--3">{copy.hero.lead}</p>
       </div>
       <div class="about-photo-wrap hero-anim hero-anim--2">
         <img
@@ -57,23 +49,13 @@ import Layout from '../layouts/Layout.astro';
   <section class="section section--alt">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <h2>The <em class="accent-word">tension</em> that shaped my work</h2>
+        <h2 set:html={rich(copy.tension.headline)} />
       </div>
       <div class="tension-layout">
         <div class="tension-body" data-animate="fade-right">
-          <p>
-            My route into this work began in socially oriented and nonprofit projects. I
-            was inspired by the care, commitment, and sense of purpose I found there —
-            but I also saw how often those qualities were undermined by unhealthy
-            dynamics, fuzzy roles, and meetings that went nowhere.
-          </p>
-          <p class="mt-sm">
-            Over time, I realized this was not just a problem in one kind of
-            organization. In some places, people cared deeply about participation,
-            values, and doing things well together, but lacked the clarity and structure
-            needed to move forward. In others, things moved faster, but at the cost of
-            ownership, trust, and genuine engagement.
-          </p>
+          {copy.tension.paragraphs.map((p, i) => (
+            <p class={i > 0 ? 'mt-sm' : undefined}>{p}</p>
+          ))}
         </div>
         <div class="tension-aside" data-animate="fade-left">
           <div class="tension-card">
@@ -82,11 +64,7 @@ import Layout from '../layouts/Layout.astro';
                 <path d="M0 12h4l2-4 3 8 3-8 2 4h10"></path>
               </svg>
             </span>
-            <p>
-              What stayed with me was the tension between those two realities, which
-              shaped the direction of my work: helping people build ways of working
-              that do not force a choice between effectiveness and humanity.
-            </p>
+            <p>{copy.tension.aside}</p>
           </div>
         </div>
       </div>
@@ -96,7 +74,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <h2>The <em class="accent-word">path</em> I followed</h2>
+        <h2 set:html={rich(copy.path.headline)} />
       </div>
       <div class="path-inner">
         <div class="path-media" data-animate="fade-right">
@@ -122,51 +100,16 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="path-content" data-animate="fade-left">
           <div class="milestones">
-            <div class="milestone">
-              <p>
-                My path into this work started with a degree in business management and
-                later a master&rsquo;s in communications, which gave me language for both
-                the structural and relational dimensions of organizational life.
-              </p>
-            </div>
-            <div class="milestone milestone--highlight">
-              <p>
-                Discovering sociocracy in 2014 gave me a practical way forward. Soon
-                after, I joined the Sociocracy 3.0 development team, and that work
-                became one important strand in the approach I&rsquo;ve continued to deepen
-                over the years.
-              </p>
-            </div>
-            <div class="milestone">
-              <p>
-                My work has also been shaped by other tools, practices, and perspectives,
-                including Voice Dialogue, Deep Democracy, and systemic approaches for
-                organizational development. I&rsquo;m not loyal to one method. What matters
-                most to me is helping people find approaches that genuinely fit their
-                context and support healthier, more effective ways of working together.
-              </p>
-            </div>
-            <div class="milestone">
-              <p>
-                Over the last 10 years, I&rsquo;ve travelled widely to teach Sociocracy 3.0 in
-                many different contexts &mdash; from neuroscience and law to public institutions
-                &mdash; across Europe, South America, South Africa, and Asia.
-              </p>
-            </div>
-            <div class="milestone">
-              <p>
-                I&rsquo;ve worked more closely with SaaS and other service-based small to mid-sized companies,
-                as well as associations and nonprofits across Europe. These are the kinds of
-                environments where I can usually contribute most.
-              </p>
-            </div>
-            <div class="milestone milestone--conclusion">
-              <p>
-                What this path has made clear to me is that people do not have to choose
-                between effectiveness and humanity. My work today is about helping create
-                the conditions that allow both to coexist in practice.
-              </p>
-            </div>
+            {copy.path.milestones.map((text, i) => {
+              const classes = ['milestone'];
+              if (i === 1) classes.push('milestone--highlight');
+              if (i === copy.path.milestones.length - 1) classes.push('milestone--conclusion');
+              return (
+                <div class={classes.join(' ')}>
+                  <p>{text}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -176,61 +119,30 @@ import Layout from '../layouts/Layout.astro';
   <section class="section section--alt">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <h2><em class="accent-word">Principles</em> that guide my work</h2>
-        <p class="mt-sm" style="margin-inline: auto;">
-          Over the years, this work has led me toward an approach that is both systemic
-          and practical — paying attention not only to visible issues, but also to the
-          patterns, conditions, and relationships that shape them.
-        </p>
+        <h2 set:html={rich(copy.principles.headline)} />
+        <p class="mt-sm" style="margin-inline: auto;">{copy.principles.intro}</p>
       </div>
       <div class="approach-grid">
-        <div class="approach-item" data-animate="fade-up" data-delay="0">
-          <h3>Systemic perspective</h3>
-          <p>
-            I pay attention to the patterns and conditions that shape behaviour — not just
-            the behaviour itself. Individual challenges are almost always connected to
-            structural or relational dynamics in the wider system.
-          </p>
-        </div>
-        <div class="approach-item" data-animate="fade-up" data-delay="80">
-          <h3>Practical focus</h3>
-          <p>
-            I am interested in what actually changes — not just what is understood. My
-            work is oriented toward practical shifts: in how decisions get made, how
-            responsibilities are held, how people communicate.
-          </p>
-        </div>
-        <div class="approach-item" data-animate="fade-up" data-delay="160">
-          <h3>Respect for context</h3>
-          <p>
-            There is no single method that works everywhere. I take time to understand
-            each organization&rsquo;s situation before suggesting anything. Solutions
-            that don&rsquo;t fit the context rarely stick.
-          </p>
-        </div>
-        <div class="approach-item" data-animate="fade-up" data-delay="240">
-          <h3>Supporting autonomy</h3>
-          <p>
-            I aim to leave organizations with more capacity, not more dependency. The goal
-            is not for you to need me indefinitely — it is for you to understand your own
-            patterns well enough to navigate them yourselves.
-          </p>
-        </div>
+        {copy.principles.items.map((item, i) => (
+          <div class="approach-item" data-animate="fade-up" data-delay={String(i * 80)}>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section section--dark cta-section">
     <div class="container text-center" data-animate="fade-up">
-      <span class="label" style="color: var(--stone-dark);">Get in touch</span>
-      <h2 style="color: var(--stone);">Curious whether this could be useful?</h2>
+      <span class="label" style="color: var(--stone-dark);">{copy.cta.label}</span>
+      <h2 style="color: var(--stone);">{copy.cta.headline}</h2>
       <p class="lead mt-md" style="color: var(--stone-mid); margin-inline: auto;">
-        I&rsquo;m always glad to have an initial conversation — to hear about your context
-        and share honestly whether I think I can help.
+        {copy.cta.lead}
       </p>
       <div class="flex-row mt-lg" style="justify-content: center;">
-        <a href="/contact" class="btn btn--primary">Get in touch</a>
-        <a href="/working-together" class="btn btn--outline-light">Working Together &rarr;</a>
+        <a href="/contact" class="btn btn--primary">{copy.cta.primaryCta}</a>
+        <a href="/working-together" class="btn btn--outline-light">{copy.cta.secondaryCta}</a>
         <a
           href="https://www.linkedin.com/in/lilidavidis/"
           target="_blank"
@@ -241,7 +153,7 @@ import Layout from '../layouts/Layout.astro';
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
-          LinkedIn &#8599;
+          {copy.cta.linkedinLabel}
         </a>
       </div>
     </div>

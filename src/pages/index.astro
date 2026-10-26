@@ -1,12 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { showClientStories } from '../config/site';
+import { rich, richHeadline } from '../lib/content';
+import copy from '../content/home.json';
 ---
 
-<Layout
-  title="Lili David — Facilitator, Consultant & Coach"
-  description="Lili David helps organizations reshape patterns that block clarity and effectiveness — facilitation, consulting, and coaching for humane, workable ways of working."
->
+<Layout title={copy.metaTitle} description={copy.metaDescription}>
 
   <!-- ===================================================
        1. HERO
@@ -14,18 +13,12 @@ import { showClientStories } from '../config/site';
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-copy">
-        <span class="label hero-anim hero-anim--1">Facilitator &middot; Consultant &middot; Coach</span>
-        <h1 class="hero-headline hero-anim hero-anim--2">
-          Transform the underlying <em class="accent-word">patterns</em><br class="break" />
-          that keep teams stuck
-        </h1>
-        <p class="lead hero-sub hero-anim hero-anim--3">
-          I help organizations reshape the structures, habits, and interactions
-          that get in the way of clarity, shared responsibility, and greater effectiveness.
-        </p>
+        <span class="label hero-anim hero-anim--1">{copy.hero.label}</span>
+        <h1 class="hero-headline hero-anim hero-anim--2" set:html={richHeadline(copy.hero.headline)} />
+        <p class="lead hero-sub hero-anim hero-anim--3">{copy.hero.lead}</p>
         <div class="flex-row hero-anim hero-anim--4">
-          <a href="/contact" class="btn btn--primary">Let&rsquo;s talk</a>
-          <a href="/working-together" class="hero-secondary-link">Working Together &rarr;</a>
+          <a href="/contact" class="btn btn--primary">{copy.hero.primaryCta}</a>
+          <a href="/working-together" class="hero-secondary-link">{copy.hero.secondaryCta}</a>
         </div>
       </div>
 
@@ -66,22 +59,17 @@ import { showClientStories } from '../config/site';
   <section class="section section--alt extremes-section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <span class="label">The problem</span>
-        <h2>Where organizations lose <em class="accent-word">balance</em></h2>
-        <p class="lead mt-sm" style="margin-inline: auto;">
-          Many organizations get stuck at one of two extremes:
-        </p>
+        <span class="label">{copy.extremes.label}</span>
+        <h2 set:html={rich(copy.extremes.headline)} />
+        <p class="lead mt-sm" style="margin-inline: auto;">{copy.extremes.lead}</p>
       </div>
 
       <div class="extremes-grid">
         <div class="extreme-unit extreme-unit--eucalyptus" data-animate="fade-right">
           <span class="extreme-weight" aria-hidden="true">&#9670;</span>
           <div class="extreme-card extreme-card--eucalyptus">
-            <h3>Focused on <em class="accent-word">inclusion</em>,<br />but lacking clarity and traction</h3>
-            <p>
-              The organization values participation and care — but responsibilities are unclear,
-              meetings drain energy, progress is slow, and key priorities slip.
-            </p>
+            <h3 set:html={rich(copy.extremes.leftTitle)} />
+            <p>{copy.extremes.leftBody}</p>
           </div>
         </div>
 
@@ -94,11 +82,8 @@ import { showClientStories } from '../config/site';
         <div class="extreme-unit extreme-unit--slate" data-animate="fade-left">
           <span class="extreme-weight" aria-hidden="true">&#9670;</span>
           <div class="extreme-card extreme-card--slate">
-            <h3>Focused on <em class="accent-word">performance</em>,<br />but low in ownership and engagement</h3>
-            <p>
-              The organization values efficiency and output — but leadership is overloaded,
-              decisions lack buy-in, tensions run high and people disengage.
-            </p>
+            <h3 set:html={rich(copy.extremes.rightTitle)} />
+            <p>{copy.extremes.rightBody}</p>
           </div>
         </div>
       </div>
@@ -111,28 +96,22 @@ import { showClientStories } from '../config/site';
   <section class="section bridge-section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <span class="label">The bridge</span>
-        <h2>What it takes to have the best of <em class="accent-word">both</em>?</h2>
+        <span class="label">{copy.bridge.label}</span>
+        <h2 set:html={rich(copy.bridge.headline)} />
       </div>
 
       <div class="bridge-grid">
         <div class="bridge-card bridge-card--eucalyptus">
           <div class="bridge-card-content">
-            <h4 class="bridge-card-label">When inclusion is ↑ but clarity is ↓</h4>
-            <p>
-              What helps is more <strong class="accent-word">structure</strong>: clearer responsibilities and
-              structure, stronger meeting practices, and agreements that sustain momentum.
-            </p>
+            <h4 class="bridge-card-label">{copy.bridge.leftLabel}</h4>
+            <p set:html={rich(copy.bridge.leftBody)} />
           </div>
         </div>
 
         <div class="bridge-card bridge-card--slate">
           <div class="bridge-card-content">
-            <h4 class="bridge-card-label">When performance is ↑ but ownership is ↓</h4>
-            <p>
-              What helps is more <strong class="accent-word">participation</strong>: healthier
-              communication, adequate transparency and participatory decisions that people truly support.
-            </p>
+            <h4 class="bridge-card-label">{copy.bridge.rightLabel}</h4>
+            <p set:html={rich(copy.bridge.rightBody)} />
           </div>
         </div>
 
@@ -143,10 +122,7 @@ import { showClientStories } from '../config/site';
 
       <div class="bridge-statement-wrap text-center">
         <div class="bridge-statement-card">
-          <p class="lead bridge-statement-text" style="margin-inline: auto;">
-            The point is to build habits and structures where <strong>effectiveness</strong> and
-            <strong>care</strong> reinforce each other.
-          </p>
+          <p class="lead bridge-statement-text" style="margin-inline: auto;" set:html={rich(copy.bridge.statement)} />
         </div>
       </div>
     </div>
@@ -158,38 +134,18 @@ import { showClientStories } from '../config/site';
   <section class="section section--alt">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <span class="label">How I Can Help</span>
-        <h2>Three ways of working <em class="accent-word">together</em></h2>
+        <span class="label">{copy.services.label}</span>
+        <h2 set:html={rich(copy.services.headline)} />
       </div>
 
       <div class="services-grid">
-        <div class="service-card" data-animate="fade-up" data-delay="0">
-          <h3>Facilitation</h3>
-          <p>
-            I support groups in designing and running engaging meetings that are
-            purposeful, well-structured, and highly effective.
-          </p>
-          <a href="/working-together#facilitation" class="service-link">Learn more &rarr;</a>
-        </div>
-
-        <div class="service-card" data-animate="fade-up" data-delay="100">
-          <h3>Consulting</h3>
-          <p>
-            I work more deeply with organizations that want to understand and address
-            the core issues behind recurring challenges.
-          </p>
-          <a href="/working-together#consulting" class="service-link">Learn more &rarr;</a>
-        </div>
-
-        <div class="service-card" data-animate="fade-up" data-delay="200">
-          <h3>Coaching</h3>
-          <p>
-            I support leaders and teams who want to better understand how their own
-            behaviour influences team dynamics and outcomes — one-to-one or in a group
-            setting.
-          </p>
-          <a href="/working-together#coaching" class="service-link">Learn more &rarr;</a>
-        </div>
+        {copy.services.items.map((item, i) => (
+          <div class="service-card" data-animate="fade-up" data-delay={String(i * 100)}>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <a href={item.linkHref} class="service-link">{item.linkLabel}</a>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -202,11 +158,11 @@ import { showClientStories } from '../config/site';
     <div class="container">
       <p class="blend-text">
         <span class="blend-slot blend-slot--left">
-          <span class="blend-sharp">Sharp thinking</span>
+          <span class="blend-sharp">{copy.blendBar.left}</span>
         </span>
         <span class="blend-rule" aria-hidden="true"></span>
         <span class="blend-slot blend-slot--right">
-          <span class="blend-human">Deeply human work</span>
+          <span class="blend-human">{copy.blendBar.right}</span>
         </span>
       </p>
     </div>
@@ -219,22 +175,15 @@ import { showClientStories } from '../config/site';
     <div class="container">
       <div class="outcomes-inner">
         <div class="outcomes-left" data-animate="fade-up">
-          <span class="label">What this work makes possible</span>
-          <h2>Outcomes</h2>
-          <p class="mt-md">
-            The goal is not only to solve immediate challenges, but to improve how
-            people work together day to day.
-          </p>
-          <a href="/contact" class="btn btn--primary mt-md">Start a conversation</a>
+          <span class="label">{copy.outcomes.label}</span>
+          <h2>{copy.outcomes.headline}</h2>
+          <p class="mt-md">{copy.outcomes.body}</p>
+          <a href="/contact" class="btn btn--primary mt-md">{copy.outcomes.cta}</a>
         </div>
         <ul class="outcomes-list outcomes-right">
-          <li data-animate="outcome-right" data-delay="0">Better distribution of responsibilities to roles and teams</li>
-          <li data-animate="outcome-right" data-delay="60">Clearer decisions and accountability</li>
-          <li data-animate="outcome-right" data-delay="120">Stronger commitment and follow-through</li>
-          <li data-animate="outcome-right" data-delay="180">More effective, participatory meetings</li>
-          <li data-animate="outcome-right" data-delay="240">Greater transparency and trust</li>
-          <li data-animate="outcome-right" data-delay="300">Healthier collaboration across differences</li>
-          <li data-animate="outcome-right" data-delay="360">Faster progress with less friction</li>
+          {copy.outcomes.items.map((item, i) => (
+            <li data-animate="outcome-right" data-delay={String(i * 60)}>{item}</li>
+          ))}
         </ul>
       </div>
     </div>
@@ -246,18 +195,12 @@ import { showClientStories } from '../config/site';
   <div class="stats-strip">
     <div class="stats-strip-gradient" aria-hidden="true"></div>
     <div class="stats-strip-inner" data-animate="fade-up">
-      <div class="stat-item">
-        <span class="stat-number">12+ years</span>
-        <span class="stat-label">working with organizations</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">Since 2015</span>
-        <span class="stat-label">Co-developer Sociocracy 3.0</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">8+ countries</span>
-        <span class="stat-label">reached with courses &amp; workshops</span>
-      </div>
+      {copy.stats.map((stat) => (
+        <div class="stat-item">
+          <span class="stat-number">{stat.number}</span>
+          <span class="stat-label">{stat.label}</span>
+        </div>
+      ))}
     </div>
   </div>
 
@@ -268,36 +211,23 @@ import { showClientStories } from '../config/site';
   <section class="section case-previews-section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <span class="label">In practice</span>
-        <h2>How this looks in <em class="accent-word">real</em> organizations</h2>
-        <p class="mt-md case-previews-intro">
-          I&rsquo;ve worked with SaaS and other service-based small to mid-sized companies, as well as
-          associations and nonprofits across Europe.
-        </p>
+        <span class="label">{copy.casePreviews.label}</span>
+        <h2 set:html={rich(copy.casePreviews.headline)} />
+        <p class="mt-md case-previews-intro">{copy.casePreviews.intro}</p>
       </div>
 
       <div class="services-grid">
-        <a href="/client-stories#growing-organization-decisions" class="service-card case-preview-card" data-animate="fade-up" data-delay="0">
-          <span class="case-preview-tag">Consulting</span>
-          <h3>A growing organization where decisions kept falling through the cracks</h3>
-          <span class="service-link">Read the full story &rarr;</span>
-        </a>
-
-        <a href="/client-stories#leadership-retreat-trust-direction" class="service-card case-preview-card" data-animate="fade-up" data-delay="100">
-          <span class="case-preview-tag">Facilitation</span>
-          <h3>A leadership retreat that needed to rebuild trust and direction</h3>
-          <span class="service-link">Read the full story &rarr;</span>
-        </a>
-
-        <a href="/client-stories#founder-leadership-coaching" class="service-card case-preview-card" data-animate="fade-up" data-delay="200">
-          <span class="case-preview-tag">Coaching</span>
-          <h3>A founder whose leadership style was creating the very problems they wanted to solve</h3>
-          <span class="service-link">Read the full story &rarr;</span>
-        </a>
+        {copy.casePreviews.items.map((item, i) => (
+          <a href={item.linkHref} class="service-card case-preview-card" data-animate="fade-up" data-delay={String(i * 100)}>
+            <span class="case-preview-tag">{item.tag}</span>
+            <h3>{item.title}</h3>
+            <span class="service-link">{item.linkLabel}</span>
+          </a>
+        ))}
       </div>
 
       <p class="text-center mt-lg" data-animate="fade-up">
-        <a href="/client-stories" class="service-link">See all client stories &rarr;</a>
+        <a href="/client-stories" class="service-link">{copy.casePreviews.allLinkLabel}</a>
       </p>
     </div>
   </section>
@@ -319,20 +249,13 @@ import { showClientStories } from '../config/site';
               decoding="async"
             />
           </div>
-          <p class="bio-photo-quote">
-            I&rsquo;m drawn to the point where thoughtful structure meets the reality of human relationships.
-          </p>
+          <p class="bio-photo-quote">{copy.bio.quote}</p>
         </div>
         <div class="bio-content" data-animate="fade-left">
-          <span class="label">About</span>
-          <h2 class="bio-headline">What shapes my perspective</h2>
-          <p class="mt-md">
-            My path into this work began in nonprofit and socially oriented projects, where I saw how
-            often good intentions were undermined by fuzzy roles, draining meetings, and unhealthy dynamics.
-            Discovering sociocracy &mdash; and joining the Sociocracy 3.0 development team in 2015 &mdash;
-            gave me a practical framework that I&rsquo;ve continued to build on ever since.
-          </p>
-          <a href="/about" class="service-link mt-md">More about me &rarr;</a>
+          <span class="label">{copy.bio.label}</span>
+          <h2 class="bio-headline">{copy.bio.headline}</h2>
+          <p class="mt-md">{copy.bio.body}</p>
+          <a href="/about" class="service-link mt-md">{copy.bio.linkLabel}</a>
         </div>
       </div>
     </div>
@@ -346,10 +269,10 @@ import { showClientStories } from '../config/site';
       <figure class="service-card testimonial-as-service-card testimonial-as-service-card--single" data-animate="fade-up">
         <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
         <blockquote class="testimonial-quote">
-          <p>Lili came at exactly the right time. Her grounded presence, sharp observations, and fresh perspective brought greater clarity and real stability to the team. Her impact was also visible in the founder &mdash; in a shift in attitude, better communication, and new perspectives that made him much easier to relate to and work with.</p>
+          <p>{copy.testimonial.quote}</p>
         </blockquote>
         <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-          <span class="testimonial-byline">Anna, Leadership Team Member</span>
+          <span class="testimonial-byline">{copy.testimonial.attribution}</span>
         </figcaption>
       </figure>
     </div>
@@ -360,20 +283,18 @@ import { showClientStories } from '../config/site';
        =================================================== -->
   <section class="section section--dark cta-section">
     <div class="container text-center" data-animate="fade-up">
-      <h2 class="cta-headline" style="color: var(--stone);">
-        Let&rsquo;s connect
-      </h2>
+      <h2 class="cta-headline" style="color: var(--stone);">{copy.cta.headline}</h2>
       <p class="lead mt-md" style="color: var(--stone-mid); margin-inline: auto; max-width: 42ch;">
-        I&rsquo;m looking forward to learning about what you&rsquo;d like to improve.
+        {copy.cta.lead}
       </p>
       <div class="flex-row mt-lg" style="justify-content: center;">
         <button type="button" class="btn cta-btn-book" data-open-booking>
-          Book a call
+          {copy.cta.bookLabel}
         </button>
-        <a href="/contact" class="btn btn--outline-light cta-btn-message">Send me a message</a>
+        <a href="/contact" class="btn btn--outline-light cta-btn-message">{copy.cta.messageLabel}</a>
       </div>
       <p class="mt-md" style="margin-bottom: 0;">
-        <a href="/about" class="cta-section-more">Find out more about me</a>
+        <a href="/about" class="cta-section-more">{copy.cta.aboutLinkLabel}</a>
       </p>
     </div>
   </section>

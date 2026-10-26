@@ -1,0 +1,57 @@
+{
+  "metaTitle": "About — Lili David",
+  "metaDescription": "Lili David — facilitator, consultant, and coach. About her work, her approach, and what shapes her perspective.",
+  "hero": {
+    "headline": "Where thoughtful *structure* meets the reality of human *relationships*",
+    "lead": "I work with people and organizations who want to build ways of working that are both effective and deeply human. My focus is on the structures, habits, and relationships that allow clarity, participation, and shared responsibility to coexist in practice."
+  },
+  "tension": {
+    "headline": "The *tension* that shaped my work",
+    "paragraphs": [
+      "My route into this work began in socially oriented and nonprofit projects. I was inspired by the care, commitment, and sense of purpose I found there — but I also saw how often those qualities were undermined by unhealthy dynamics, fuzzy roles, and meetings that went nowhere.",
+      "Over time, I realized this was not just a problem in one kind of organization. In some places, people cared deeply about participation, values, and doing things well together, but lacked the clarity and structure needed to move forward. In others, things moved faster, but at the cost of ownership, trust, and genuine engagement."
+    ],
+    "aside": "What stayed with me was the tension between those two realities, which shaped the direction of my work: helping people build ways of working that do not force a choice between effectiveness and humanity."
+  },
+  "path": {
+    "headline": "The *path* I followed",
+    "milestones": [
+      "My path into this work started with a degree in business management and later a master's in communications, which gave me language for both the structural and relational dimensions of organizational life.",
+      "Discovering sociocracy in 2014 gave me a practical way forward. Soon after, I joined the Sociocracy 3.0 development team, and that work became one important strand in the approach I've continued to deepen over the years.",
+      "My work has also been shaped by other tools, practices, and perspectives, including Voice Dialogue, Deep Democracy, and systemic approaches for organizational development. I'm not loyal to one method. What matters most to me is helping people find approaches that genuinely fit their context and support healthier, more effective ways of working together.",
+      "Over the last 10 years, I've travelled widely to teach Sociocracy 3.0 in many different contexts — from neuroscience and law to public institutions — across Europe, South America, and Asia.",
+      "I've worked more closely with SaaS and other service-based small to mid-sized companies, as well as associations and nonprofits across Europe. These are the kinds of environments where I can usually contribute most.",
+      "What this path has made clear to me is that people do not have to choose between effectiveness and humanity. My work today is about helping create the conditions that allow both to coexist in practice."
+    ]
+  },
+  "principles": {
+    "headline": "*Principles* that guide my work",
+    "intro": "Over the years, this work has led me toward an approach that is both systemic and practical — paying attention not only to visible issues, but also to the patterns, conditions, and relationships that shape them.",
+    "items": [
+      {
+        "title": "Systemic perspective",
+        "body": "I pay attention to the patterns and conditions that shape behaviour — not just the behaviour itself. Individual challenges are almost always connected to structural or relational dynamics in the wider system."
+      },
+      {
+        "title": "Practical focus",
+        "body": "I am interested in what actually changes — not just what is understood. My work is oriented toward practical shifts: in how decisions get made, how responsibilities are held, how people communicate."
+      },
+      {
+        "title": "Respect for context",
+        "body": "There is no single method that works everywhere. I take time to understand each organization's situation before suggesting anything. Solutions that don't fit the context rarely stick."
+      },
+      {
+        "title": "Supporting autonomy",
+        "body": "I aim to leave organizations with more capacity, not more dependency. The goal is not for you to need me indefinitely — it is for you to understand your own patterns well enough to navigate them yourselves."
+      }
+    ]
+  },
+  "cta": {
+    "label": "Get in touch",
+    "headline": "Curious whether this could be useful?",
+    "lead": "I'm always glad to have an initial conversation — to hear about your context and share honestly whether I think I can help.",
+    "primaryCta": "Get in touch",
+    "secondaryCta": "Working Together →",
+    "linkedinLabel": "LinkedIn ↗"
+  }
+}

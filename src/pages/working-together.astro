@@ -1,21 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { showClientStories } from '../config/site';
+import { rich } from '../lib/content';
+import copy from '../content/working-together.json';
 ---
 
-<Layout
-  title="Three Ways of Working Together — Lili David"
-  description="Facilitation, consulting, and coaching to help organizations build ways of working that are both effective and humane."
->
+<Layout title={copy.metaTitle} description={copy.metaDescription}>
 
   <!-- PAGE HERO -->
   <section class="page-hero section">
     <div class="container">
-      <h1 class="hero-anim hero-anim--1">Three ways of working <em class="accent-word">together</em></h1>
+      <h1 class="hero-anim hero-anim--1" set:html={rich(copy.hero.headline)} />
       <p class="lead mt-md hero-anim hero-anim--2">
-        These three approaches offer clear entry points, though in practice the work is often
-        a blend. Some clients want one focused intervention; others need a combination as
-        things unfold.
+        {copy.hero.lead}
       </p>
     </div>
   </section>
@@ -40,12 +37,12 @@ import { showClientStories } from '../config/site';
     </div>
   </div>
 
-  <!-- SERVICE 01 — FACILITATION -->
-  <section id="facilitation" class="section section--alt service-section">
+  {copy.services.map((service, index) => (
+  <section id={service.id} class={index === 0 || index === 2 ? 'section section--alt service-section' : 'section service-section'}>
     <div class="container">
       <div class="service-layout">
         <div class="service-meta" data-animate="fade-right">
-          <h2><span class="service-name-box">Facilitation</span></h2>
+          <h2><span class="service-name-box">{service.name}</span></h2>
           <blockquote class="service-quote service-quote--meta mt-md">
             <span class="service-quote-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
@@ -53,145 +50,43 @@ import { showClientStories } from '../config/site';
                 <path d="M14 9h4v4a4 4 0 0 1-4 4"></path>
               </svg>
             </span>
-            <p>Good facilitation makes the process disappear — people just do their best thinking together.</p>
+            <p>{service.quote}</p>
           </blockquote>
         </div>
         <div class="service-body" data-animate="fade-left">
           <h3 class="service-intro">
-            I guide groups through meetings that are genuinely worth the time.
+            {service.intro}
           </h3>
           <p class="mt-sm">
-            Starting from what you want the meeting to achieve, I design a structure that
-            supports those outcomes.
+            {service.body}
           </p>
 
-          <h4 class="mt-lg subsection-label">Who this is for</h4>
+          <h4 class="mt-lg subsection-label">{service.whoLabel}</h4>
           <ul class="outcomes-list outcomes-right service-list mt-sm">
-            <li>Strategic planning sessions and team retreats</li>
-            <li>Decision-making meetings where alignment matters</li>
-            <li>Retrospectives, reviews, or process design workshops</li>
-            <li>Sensitive conversations that need a skilled neutral guide</li>
-            <li>Meetings that have stalled or tend to go in circles</li>
+            {service.whoItems.map((item) => (
+              <li>{item}</li>
+            ))}
           </ul>
 
-          <h4 class="subsection-label">What working together looks like</h4>
+          <h4 class="subsection-label">{service.howLabel}</h4>
           <p class="mt-sm">
-            We start with a conversation about the group, the purpose, and what a
-            successful outcome looks like. From there, I design a structure that fits
-            your context and guide the group through it — managing pace, drawing out
-            quieter voices, surfacing disagreement cleanly, and keeping things moving.
+            {service.howBody}
           </p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- SERVICE 02 — CONSULTING -->
-  <section id="consulting" class="section service-section">
-    <div class="container">
-      <div class="service-layout">
-        <div class="service-meta" data-animate="fade-right">
-          <h2><span class="service-name-box">Consulting</span></h2>
-          <blockquote class="service-quote service-quote--meta mt-md">
-            <span class="service-quote-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9h4v4a4 4 0 0 1-4 4"></path>
-                <path d="M14 9h4v4a4 4 0 0 1-4 4"></path>
-              </svg>
-            </span>
-            <p>The issue people bring is not always the one that most needs attention.</p>
-          </blockquote>
-        </div>
-        <div class="service-body" data-animate="fade-left">
-          <h3 class="service-intro">
-            I help leaders and teams understand and address the patterns behind
-            recurring challenges.
-          </h3>
-          <p class="mt-sm">
-            This means listening broadly — often to more people than the initial sponsor —
-            and identifying the structural or relational dynamics driving what keeps
-            happening. From there, I help design practical responses and support
-            implementation without taking over ownership.
-          </p>
-
-          <h4 class="mt-lg subsection-label">Who this is for</h4>
-          <ul class="outcomes-list outcomes-right service-list mt-sm">
-            <li>Organizations dealing with recurring coordination problems</li>
-            <li>Teams where roles and responsibilities are genuinely unclear</li>
-            <li>Leadership groups that keep getting stuck in the same unhelpful dynamics</li>
-            <li>Organizations wanting to distribute authority — without losing clarity</li>
-            <li>Situations where something is visibly not working but the cause isn&rsquo;t obvious</li>
-          </ul>
-
-          <h4 class="subsection-label">What working together looks like</h4>
-          <p class="mt-sm">
-            Once I have a clear enough picture, I share what I&rsquo;m seeing — including
-            things that may be hard to see from inside the system. From there,
-            we design practical responses together. I stay involved as long as it is
-            useful, and the aim is always to leave you more effective, not more dependent.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICE 03 — COACHING -->
-  <section id="coaching" class="section section--alt service-section">
-    <div class="container">
-      <div class="service-layout">
-        <div class="service-meta" data-animate="fade-right">
-          <h2><span class="service-name-box">Coaching</span></h2>
-          <blockquote class="service-quote service-quote--meta mt-md">
-            <span class="service-quote-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9h4v4a4 4 0 0 1-4 4"></path>
-                <path d="M14 9h4v4a4 4 0 0 1-4 4"></path>
-              </svg>
-            </span>
-            <p>Your presence is already leading. What are you transmitting?</p>
-          </blockquote>
-        </div>
-        <div class="service-body" data-animate="fade-left">
-          <h3 class="service-intro">
-            I work with leaders and teams who want to lead with more awareness, clarity,
-            and relational intelligence.
-          </h3>
-          <p class="mt-sm">
-            One-to-one or in a group, this is personal and relational work — helping
-            people notice the habits, reactions, and assumptions that shape how they lead,
-            and develop more effective ways of working with others.
-          </p>
-
-          <h4 class="mt-lg subsection-label">Who this is for</h4>
-          <ul class="outcomes-list outcomes-right service-list mt-sm">
-            <li>Leaders who sense that their own patterns may be limiting their team</li>
-            <li>People stepping into more responsibility and wanting to do it well</li>
-            <li>Teams where interpersonal dynamics are getting in the way</li>
-            <li>Leaders who want to lead more collaboratively without losing direction</li>
-            <li>People navigating significant transitions in their role or organisation</li>
-          </ul>
-
-          <h4 class="subsection-label">What working together looks like</h4>
-          <p class="mt-sm">
-            In one-to-one coaching, we meet regularly over a defined period — usually three
-            to six months. I bring curiosity, honesty, and a systemic lens to what you share.
-            In team coaching, I work with the group as a system, helping members understand
-            their collective patterns and find new ways of working together.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  ))}
 
   {showClientStories && (
   <!-- CASE STUDIES CALLOUT -->
   <section class="section case-callout-section">
     <div class="container text-center" data-animate="fade-up">
-      <h2>See how this work plays out in <em class="accent-word">practice</em></h2>
+      <h2 set:html={rich(copy.caseCallout.headline)} />
       <p class="lead mt-md" style="margin-inline: auto;">
-        Real examples of what working together looked like &mdash; and what changed.
+        {copy.caseCallout.lead}
       </p>
-      <a href="/client-stories" class="btn btn--primary mt-md">View client stories &rarr;</a>
+      <a href="/client-stories" class="btn btn--primary mt-md">{copy.caseCallout.cta}</a>
     </div>
   </section>
   )}
@@ -202,11 +97,11 @@ import { showClientStories } from '../config/site';
     <div class="container">
       <p class="hiw-blend-text">
         <span class="hiw-blend-slot hiw-blend-slot--left">
-          <span class="hiw-blend-sharp">See the system</span>
+          <span class="hiw-blend-sharp">{copy.blendBar.left}</span>
         </span>
         <span class="hiw-blend-rule" aria-hidden="true"></span>
         <span class="hiw-blend-slot hiw-blend-slot--right">
-          <span class="hiw-blend-human">Strengthen the work</span>
+          <span class="hiw-blend-human">{copy.blendBar.right}</span>
         </span>
       </p>
     </div>
@@ -215,22 +110,13 @@ import { showClientStories } from '../config/site';
   <!-- TRAINING APPROACH -->
   <section class="section hiw-training-section">
     <div class="container hiw-training-inner" data-animate="fade-up">
-      <h2>How about <em class="accent-word">training</em>?</h2>
+      <h2 set:html={rich(copy.training.headline)} />
       <p class="lead mt-md hiw-copy-narrow">
-        I&rsquo;ve spent many years delivering trainings, but I&rsquo;ve found that learning sticks
-        best when it is connected to people&rsquo;s real work.
+        {copy.training.lead}
       </p>
-      <p class="mt-md hiw-copy-wide">
-        So rather than teaching in the abstract, I bring in concepts, processes, and
-        practices that are relevant to the issue at hand, and teach through the work
-        itself. I also make space for reflection — on what people are learning, what
-        stood out, and what they noticed in both what we did and how we did it.
-      </p>
-      <p class="mt-md hiw-copy-wide">
-        Over time, I help teams build their own capacity, including facilitation skills,
-        so that the learning stays with them and my support becomes less necessary. This
-        is one way in which I measure the success of my interventions.
-      </p>
+      {copy.training.paragraphs.map((p) => (
+        <p class="mt-md hiw-copy-wide">{p}</p>
+      ))}
     </div>
   </section>
 
@@ -238,46 +124,22 @@ import { showClientStories } from '../config/site';
   <section class="section testimonials-section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <h2>What clients say</h2>
+        <h2>{copy.testimonials.headline}</h2>
       </div>
       <div class="testimonials-grid">
-        <figure class="service-card testimonial-as-service-card" data-animate="fade-up">
+        {copy.testimonials.items.map((item, index) => (
+        <figure class="service-card testimonial-as-service-card" data-animate="fade-up" data-delay={index > 0 ? String(index * 80) : undefined}>
           <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
           <blockquote class="testimonial-quote">
             <p>
-              Lili&rsquo;s facilitation was excellent &mdash; effective, steady, and exactly what we needed
-              to keep moving forward and maintain flow.
+              {item.quote}
             </p>
           </blockquote>
           <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Chimene, Marketing Lead</span>
+            <span class="testimonial-byline">{item.attribution}</span>
           </figcaption>
         </figure>
-        <figure class="service-card testimonial-as-service-card" data-animate="fade-up" data-delay="80">
-          <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
-          <blockquote class="testimonial-quote">
-            <p>
-              Lili has a sharp intuition for organisational dynamics and brings clarity to patterns that
-              are often hard to see from inside the system. Her support around domain clarity and how the
-              system functions has been particularly valuable.
-            </p>
-          </blockquote>
-          <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Mara, Senior Project Manager</span>
-          </figcaption>
-        </figure>
-        <figure class="service-card testimonial-as-service-card" data-animate="fade-up" data-delay="160">
-          <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
-          <blockquote class="testimonial-quote">
-            <p>
-              I especially value Lili&rsquo;s thoughtful questions and reflections. They&rsquo;ve helped me
-              make sense of what I&rsquo;m seeing, articulate it more clearly, and grow in the process.
-            </p>
-          </blockquote>
-          <figcaption class="testimonial-attribution testimonial-attribution--anonymous">
-            <span class="testimonial-byline">Vlad, Founder and President</span>
-          </figcaption>
-        </figure>
+        ))}
       </div>
     </div>
   </section>
@@ -286,105 +148,21 @@ import { showClientStories } from '../config/site';
   <section class="section faq-section">
     <div class="container">
       <div class="text-center mb-lg" data-animate="fade-up">
-        <span class="label">Before we talk</span>
-        <h2>Common questions</h2>
+        <span class="label">{copy.faq.label}</span>
+        <h2>{copy.faq.headline}</h2>
       </div>
 
       <div class="faq-list" data-animate="fade-up">
+        {copy.faq.items.map((item) => (
         <details class="faq-item">
-          <summary class="faq-question">How do I know which service I need?</summary>
+          <summary class="faq-question">{item.question}</summary>
           <div class="faq-answer">
-            <p>
-              You don&rsquo;t need to know in advance. Many engagements combine facilitation, consulting,
-              and coaching as the work unfolds. A short initial conversation is usually enough to
-              clarify what kind of support would be most useful and where to begin.
-            </p>
+            {item.answer.split('\n\n').map((para) => (
+              <p>{para}</p>
+            ))}
           </div>
         </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">Do you work remotely?</summary>
-          <div class="faq-answer">
-            <p>
-              Yes, most of my work is online. I&rsquo;m also open to selected in-person assignments
-              across Europe. I live near Barcelona, Spain, which can make travel-based work easier
-              for some clients.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">How long does a typical engagement last?</summary>
-          <div class="faq-answer">
-            <p>
-              It depends on the scope and what kind of support is needed. A facilitation engagement
-              might be a single session or a short series of meetings, while consulting and coaching
-              engagements often run for three to six months. In all cases, we define a clear scope
-              together based on your situation.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What kind of organizations do you have experience with?</summary>
-          <div class="faq-answer">
-            <p>
-              I&rsquo;ve worked with SaaS and other service-based small to mid-sized companies, as
-              well as associations and nonprofits across Europe. These are the kinds of environments
-              where I can usually contribute most.
-            </p>
-            <p>
-              I&rsquo;ve also taught Sociocracy 3.0 in many different contexts &mdash; from neuroscience
-              and law to public institutions &mdash; across Europe, South America, South Africa, and Asia.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What size of organization do you work with?</summary>
-          <div class="faq-answer">
-            <p>
-              I&rsquo;ve worked with teams and organizations of different sizes, but I generally prefer
-              working with small to mid-sized organizations, up to around 200 people. What matters
-              most, though, is not size but a genuine willingness to look at how things work and try
-              something different.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What can I expect in terms of fees?</summary>
-          <div class="faq-answer">
-            <p>
-              My fees typically range from &euro;70 to &euro;200 per hour, depending on the type of
-              assignment, its duration, and your particular context. If I believe I&rsquo;m the right
-              person to support you, I don&rsquo;t want money alone to be the reason we don&rsquo;t work
-              together, so I&rsquo;m open to discussing what feels viable.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What does a first conversation look like?</summary>
-          <div class="faq-answer">
-            <p>
-              It&rsquo;s a free, informal call where I learn more about your situation and we explore
-              whether and how I might help. There&rsquo;s no commitment and no sales pitch &mdash; just
-              a chance to see whether working together feels like a good fit.
-            </p>
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary class="faq-question">What if we&rsquo;re not sure what the problem is?</summary>
-          <div class="faq-answer">
-            <p>
-              That&rsquo;s a very good place to start. Part of my work is helping you understand more
-              clearly what&rsquo;s going on before deciding what to do about it. Often, clarity about
-              the real issue is what makes the next step possible.
-            </p>
-          </div>
-        </details>
+        ))}
       </div>
     </div>
   </section>
@@ -392,21 +170,19 @@ import { showClientStories } from '../config/site';
   <!-- CLOSING CTA -->
   <section class="section hiw-cta-section">
     <div class="container text-center" data-animate="fade-up">
-      <h2 class="hiw-cta-heading">Start with a conversation</h2>
+      <h2 class="hiw-cta-heading">{copy.cta.headline}</h2>
       <p class="lead mt-md hiw-cta-lead hiw-copy-cta">
-        If something on this page resonates, you&rsquo;re welcome to get in touch. You can book
-        a free call or send me a message, and we can explore together what kind of support would
-        be most useful.
+        {copy.cta.lead}
       </p>
       <p class="hiw-cta-format mt-md hiw-copy-cta">
-        I work primarily online and am open to short, travel-based assignments across Europe.
+        {copy.cta.formatNote}
       </p>
       <div class="hiw-cta-actions mt-lg">
         <div class="hiw-cta-actions-row">
           <button type="button" class="btn hiw-cta-btn-white" data-open-booking>
-            Book a call
+            {copy.cta.bookLabel}
           </button>
-          <a href="/contact" class="btn btn--outline-light hiw-cta-btn-message">Send me a message</a>
+          <a href="/contact" class="btn btn--outline-light hiw-cta-btn-message">{copy.cta.messageLabel}</a>
         </div>
         <div class="hiw-cta-linkedin-row">
           <a
@@ -414,12 +190,12 @@ import { showClientStories } from '../config/site';
             target="_blank"
             rel="noopener noreferrer"
             class="hiw-cta-link-linkedin"
-            aria-label="Connect on LinkedIn (opens in a new tab)"
+            aria-label={`${copy.cta.linkedinLabel} (opens in a new tab)`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
-            Connect on LinkedIn
+            {copy.cta.linkedinLabel}
           </a>
         </div>
       </div>

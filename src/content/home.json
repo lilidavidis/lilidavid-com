@@ -1,0 +1,130 @@
+{
+  "metaTitle": "Lili David — Facilitator, Consultant & Coach",
+  "metaDescription": "Lili David helps organizations reshape patterns that block clarity and effectiveness — facilitation, consulting, and coaching for humane, workable ways of working.",
+  "hero": {
+    "label": "Facilitator · Consultant · Coach",
+    "headline": "Transform the underlying *patterns*|that keep teams stuck",
+    "lead": "I help organizations reshape the structures, habits, and interactions that get in the way of clarity, shared responsibility, and greater effectiveness.",
+    "primaryCta": "Let's talk",
+    "secondaryCta": "Working Together →"
+  },
+  "extremes": {
+    "label": "The problem",
+    "headline": "Where organizations lose *balance*",
+    "lead": "Many organizations get stuck at one of two extremes:",
+    "leftTitle": "Focused on *inclusion*,|but lacking clarity and traction",
+    "leftBody": "The organization values participation and care — but responsibilities are unclear, meetings drain energy, progress is slow, and key priorities slip.",
+    "rightTitle": "Focused on *performance*,|but low in ownership and engagement",
+    "rightBody": "The organization values efficiency and output — but leadership is overloaded, decisions lack buy-in, tensions run high and people disengage."
+  },
+  "bridge": {
+    "label": "The bridge",
+    "headline": "What it takes to have the best of *both*?",
+    "leftLabel": "When inclusion is ↑ but clarity is ↓",
+    "leftBody": "What helps is more **structure**: clearer responsibilities and structure, stronger meeting practices, and agreements that sustain momentum.",
+    "rightLabel": "When performance is ↑ but ownership is ↓",
+    "rightBody": "What helps is more **participation**: healthier communication, adequate transparency and participatory decisions that people truly support.",
+    "statement": "The point is to build habits and structures where __effectiveness__ and __care__ reinforce each other."
+  },
+  "services": {
+    "label": "How I Can Help",
+    "headline": "Three ways of working *together*",
+    "items": [
+      {
+        "title": "Facilitation",
+        "body": "I support groups in designing and running engaging meetings that are purposeful, well-structured, and highly effective.",
+        "linkLabel": "Learn more →",
+        "linkHref": "/working-together#facilitation"
+      },
+      {
+        "title": "Consulting",
+        "body": "I work more deeply with organizations that want to understand and address the core issues behind recurring challenges.",
+        "linkLabel": "Learn more →",
+        "linkHref": "/working-together#consulting"
+      },
+      {
+        "title": "Coaching",
+        "body": "I support leaders and teams who want to better understand how their own behaviour influences team dynamics and outcomes — one-to-one or in a group setting.",
+        "linkLabel": "Learn more →",
+        "linkHref": "/working-together#coaching"
+      }
+    ]
+  },
+  "blendBar": {
+    "left": "Sharp thinking",
+    "right": "Deeply human work"
+  },
+  "outcomes": {
+    "label": "What this work makes possible",
+    "headline": "Outcomes",
+    "body": "The goal is not only to solve immediate challenges, but to improve how people work together day to day.",
+    "cta": "Start a conversation",
+    "items": [
+      "Better distribution of responsibilities to roles and teams",
+      "Clearer decisions and accountability",
+      "Stronger commitment and follow-through",
+      "More effective, participatory meetings",
+      "Greater transparency and trust",
+      "Healthier collaboration across differences",
+      "Faster progress with less friction"
+    ]
+  },
+  "stats": [
+    {
+      "number": "12+ years",
+      "label": "working with organizations"
+    },
+    {
+      "number": "Since 2015",
+      "label": "Co-developer Sociocracy 3.0"
+    },
+    {
+      "number": "8+ countries",
+      "label": "reached with courses & workshops"
+    }
+  ],
+  "casePreviews": {
+    "label": "In practice",
+    "headline": "How this looks in *real* organizations",
+    "intro": "I've worked with SaaS and other service-based small to mid-sized companies, as well as associations and nonprofits across Europe.",
+    "items": [
+      {
+        "tag": "Consulting",
+        "title": "A growing organization where decisions kept falling through the cracks",
+        "linkLabel": "Read the full story →",
+        "linkHref": "/client-stories#growing-organization-decisions"
+      },
+      {
+        "tag": "Facilitation",
+        "title": "A leadership retreat that needed to rebuild trust and direction",
+        "linkLabel": "Read the full story →",
+        "linkHref": "/client-stories#leadership-retreat-trust-direction"
+      },
+      {
+        "tag": "Coaching",
+        "title": "A founder whose leadership style was creating the very problems they wanted to solve",
+        "linkLabel": "Read the full story →",
+        "linkHref": "/client-stories#founder-leadership-coaching"
+      }
+    ],
+    "allLinkLabel": "See all client stories →"
+  },
+  "bio": {
+    "quote": "I'm drawn to the point where thoughtful structure meets the reality of human relationships.",
+    "label": "About",
+    "headline": "What shapes my perspective",
+    "body": "My path into this work began in nonprofit and socially oriented projects, where I saw how often good intentions were undermined by fuzzy roles, draining meetings, and unhealthy dynamics. Discovering sociocracy — and joining the Sociocracy 3.0 development team in 2015 — gave me a practical framework that I've continued to build on ever since.",
+    "linkLabel": "More about me →"
+  },
+  "testimonial": {
+    "quote": "Lili came at exactly the right time. Her grounded presence, sharp observations, and fresh perspective brought greater clarity and real stability to the team. Her impact was also visible in the founder — in a shift in attitude, better communication, and new perspectives that made him much easier to relate to and work with.",
+    "attribution": "Anna, Leadership Team Member"
+  },
+  "cta": {
+    "headline": "Let's connect",
+    "lead": "I'm looking forward to learning about what you'd like to improve.",
+    "bookLabel": "Book a call",
+    "messageLabel": "Send me a message",
+    "aboutLinkLabel": "Find out more about me"
+  }
+}

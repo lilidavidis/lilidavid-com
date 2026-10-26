@@ -1,0 +1,141 @@
+{
+  "metaTitle": "Three Ways of Working Together — Lili David",
+  "metaDescription": "Facilitation, consulting, and coaching to help organizations build ways of working that are both effective and humane.",
+  "hero": {
+    "headline": "Three ways of working *together*",
+    "lead": "These three approaches offer clear entry points, though in practice the work is often a blend. Some clients want one focused intervention; others need a combination as things unfold."
+  },
+  "services": [
+    {
+      "id": "facilitation",
+      "name": "Facilitation",
+      "quote": "Good facilitation makes the process disappear — people just do their best thinking together.",
+      "intro": "I guide groups through meetings that are genuinely worth the time.",
+      "body": "Starting from what you want the meeting to achieve, I design a structure that supports those outcomes.",
+      "whoLabel": "Who this is for",
+      "whoItems": [
+        "Strategic planning sessions and team retreats",
+        "Decision-making meetings where alignment matters",
+        "Retrospectives, reviews, or process design workshops",
+        "Sensitive conversations that need a skilled neutral guide",
+        "Meetings that have stalled or tend to go in circles"
+      ],
+      "howLabel": "What working together looks like",
+      "howBody": "We start with a conversation about the group, the purpose, and what a successful outcome looks like. From there, I design a structure that fits your context and guide the group through it — managing pace, drawing out quieter voices, surfacing disagreement cleanly, and keeping things moving."
+    },
+    {
+      "id": "consulting",
+      "name": "Consulting",
+      "quote": "The issue people bring is not always the one that most needs attention.",
+      "intro": "I help leaders and teams understand and address the patterns behind recurring challenges.",
+      "body": "This means listening broadly — often to more people than the initial sponsor — and identifying the structural or relational dynamics driving what keeps happening. From there, I help design practical responses and support implementation without taking over ownership.",
+      "whoLabel": "Who this is for",
+      "whoItems": [
+        "Organizations dealing with recurring coordination problems",
+        "Teams where roles and responsibilities are genuinely unclear",
+        "Leadership groups that keep getting stuck in the same unhelpful dynamics",
+        "Organizations wanting to distribute authority — without losing clarity",
+        "Situations where something is visibly not working but the cause isn't obvious"
+      ],
+      "howLabel": "What working together looks like",
+      "howBody": "Once I have a clear enough picture, I share what I'm seeing — including things that may be hard to see from inside the system. From there, we design practical responses together. I stay involved as long as it is useful, and the aim is always to leave you more effective, not more dependent."
+    },
+    {
+      "id": "coaching",
+      "name": "Coaching",
+      "quote": "Your presence is already leading. What are you transmitting?",
+      "intro": "I work with leaders and teams who want to lead with more awareness, clarity, and relational intelligence.",
+      "body": "One-to-one or in a group, this is personal and relational work — helping people notice the habits, reactions, and assumptions that shape how they lead, and develop more effective ways of working with others.",
+      "whoLabel": "Who this is for",
+      "whoItems": [
+        "Leaders who sense that their own patterns may be limiting their team",
+        "People stepping into more responsibility and wanting to do it well",
+        "Teams where interpersonal dynamics are getting in the way",
+        "Leaders who want to lead more collaboratively without losing direction",
+        "People navigating significant transitions in their role or organisation"
+      ],
+      "howLabel": "What working together looks like",
+      "howBody": "In one-to-one coaching, we meet regularly over a defined period — usually three to six months. I bring curiosity, honesty, and a systemic lens to what you share. In team coaching, I work with the group as a system, helping members understand their collective patterns and find new ways of working together."
+    }
+  ],
+  "caseCallout": {
+    "headline": "See how this work plays out in *practice*",
+    "lead": "Real examples of what working together looked like — and what changed.",
+    "cta": "View client stories →"
+  },
+  "blendBar": {
+    "left": "See the system",
+    "right": "Strengthen the work"
+  },
+  "training": {
+    "headline": "How about *training*?",
+    "lead": "I've spent many years delivering trainings, but I've found that learning sticks best when it is connected to people's real work.",
+    "paragraphs": [
+      "So rather than teaching in the abstract, I bring in concepts, processes, and practices that are relevant to the issue at hand, and teach through the work itself. I also make space for reflection — on what people are learning, what stood out, and what they noticed in both what we did and how we did it.",
+      "Over time, I help teams build their own capacity, including facilitation skills, so that the learning stays with them and my support becomes less necessary. This is one way in which I measure the success of my interventions."
+    ]
+  },
+  "testimonials": {
+    "headline": "What clients say",
+    "items": [
+      {
+        "quote": "Lili has a sharp intuition for organisational dynamics and brings clarity to patterns that are often hard to see from inside the system. Her support around domain clarity and how the system functions has been particularly valuable.",
+        "attribution": "Mara, Senior Project Manager"
+      },
+      {
+        "quote": "Working with Lili was a truly positive experience. She creates a welcoming and supportive environment, making it easy for everyone to engage and contribute. Her guidance is clear, thoughtful, and adaptable to different needs. I really appreciated her professionalism and the way she helped bring out the best of our meetings.",
+        "attribution": "Chimene, Marketing Lead"
+      },
+      {
+        "quote": "I especially value Lili's thoughtful questions and reflections. They've helped me make sense of what I'm seeing, articulate it more clearly, and grow in the process.",
+        "attribution": "Vlad, Founder and President"
+      }
+    ]
+  },
+  "faq": {
+    "label": "Before we talk",
+    "headline": "Common questions",
+    "items": [
+      {
+        "question": "How do I know which service I need?",
+        "answer": "You don't need to know in advance. Many engagements combine facilitation, consulting, and coaching as the work unfolds. A short initial conversation is usually enough to clarify what kind of support would be most useful and where to begin."
+      },
+      {
+        "question": "Do you work remotely?",
+        "answer": "Yes, most of my work is online. I'm also open to selected in-person assignments across Europe. I live near Barcelona, Spain, which can make travel-based work easier for some clients."
+      },
+      {
+        "question": "How long does a typical engagement last?",
+        "answer": "It depends on the scope and what kind of support is needed. A facilitation engagement might be a single session or a short series of meetings, while consulting and coaching engagements often run for three to six months. In all cases, we define a clear scope together based on your situation."
+      },
+      {
+        "question": "What kind of organizations do you have experience with?",
+        "answer": "I've worked with SaaS and other service-based small to mid-sized companies, as well as associations and nonprofits across Europe. These are the kinds of environments where I can usually contribute most.\n\nI've also taught Sociocracy 3.0 in many different contexts — from neuroscience and law to public institutions — across Europe, South America, and Asia."
+      },
+      {
+        "question": "What size of organization do you work with?",
+        "answer": "I've worked with teams and organizations of different sizes, but I generally prefer working with small to mid-sized organizations, up to around 200 people. What matters most, though, is not size but a genuine willingness to look at how things work and try something different."
+      },
+      {
+        "question": "What can I expect in terms of fees?",
+        "answer": "My fees typically range from €70 to €200 per hour, depending on the type of assignment, its duration, and your particular context. If I believe I'm the right person to support you, I don't want money alone to be the reason we don't work together, so I'm open to discussing what feels viable."
+      },
+      {
+        "question": "What does a first conversation look like?",
+        "answer": "It's a free, informal call where I learn more about your situation and we explore whether and how I might help. There's no commitment and no sales pitch — just a chance to see whether working together feels like a good fit."
+      },
+      {
+        "question": "What if we're not sure what the problem is?",
+        "answer": "That's a very good place to start. Part of my work is helping you understand more clearly what's going on before deciding what to do about it. Often, clarity about the real issue is what makes the next step possible."
+      }
+    ]
+  },
+  "cta": {
+    "headline": "Start with a conversation",
+    "lead": "If something on this page resonates, you're welcome to get in touch. You can book a free call or send me a message, and we can explore together what kind of support would be most useful.",
+    "formatNote": "I work primarily online and am open to short, travel-based assignments across Europe.",
+    "bookLabel": "Book a call",
+    "messageLabel": "Send me a message",
+    "linkedinLabel": "Connect on LinkedIn"
+  }
+}

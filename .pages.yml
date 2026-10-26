@@ -1,0 +1,479 @@
+# Pages CMS — edit site copy at https://app.pagescms.org
+# Tip for accent-coloured words: wrap them in *asterisks*  e.g. *patterns*
+# Tip for a line break in a headline: use |  e.g. line one|line two
+
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: home
+        label: Home
+        type: file
+        path: src/content/home.json
+        format: json
+        fields:
+          - name: metaTitle
+            label: Browser tab title
+            type: string
+          - name: metaDescription
+            label: Search / social description
+            type: text
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                label: Headline (*word* = accent colour, | = line break)
+                type: text
+              - name: lead
+                type: text
+              - name: primaryCta
+                label: Primary button
+                type: string
+              - name: secondaryCta
+                label: Secondary link
+                type: string
+          - name: extremes
+            label: Two extremes
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: text
+              - name: lead
+                type: text
+              - name: leftTitle
+                label: Left card title
+                type: text
+              - name: leftBody
+                label: Left card body
+                type: text
+              - name: rightTitle
+                label: Right card title
+                type: text
+              - name: rightBody
+                label: Right card body
+                type: text
+          - name: bridge
+            label: Bridge
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: text
+              - name: leftLabel
+                type: string
+              - name: leftBody
+                type: text
+              - name: rightLabel
+                type: string
+              - name: rightBody
+                type: text
+              - name: statement
+                type: text
+          - name: services
+            label: Services teaser
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: text
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                  - name: body
+                    type: text
+                  - name: linkLabel
+                    type: string
+                  - name: linkHref
+                    label: Link URL
+                    type: string
+          - name: blendBar
+            label: Blend bar
+            type: object
+            fields:
+              - name: left
+                type: string
+              - name: right
+                type: string
+          - name: outcomes
+            label: Outcomes
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: string
+              - name: body
+                type: text
+              - name: cta
+                label: Button label
+                type: string
+              - name: items
+                label: Outcome list
+                type: string
+                list: true
+          - name: stats
+            label: Stats strip
+            type: object
+            list:
+              collapsible:
+                summary: "{number}"
+            fields:
+              - name: number
+                type: string
+              - name: label
+                type: string
+          - name: casePreviews
+            label: Case study previews (if enabled)
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: text
+              - name: intro
+                type: text
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    summary: "{title}"
+                fields:
+                  - name: tag
+                    type: string
+                  - name: title
+                    type: text
+                  - name: linkLabel
+                    type: string
+                  - name: linkHref
+                    type: string
+              - name: allLinkLabel
+                type: string
+          - name: bio
+            label: About teaser
+            type: object
+            fields:
+              - name: quote
+                type: text
+              - name: label
+                type: string
+              - name: headline
+                type: string
+              - name: body
+                type: text
+              - name: linkLabel
+                type: string
+          - name: testimonial
+            label: Testimonial
+            type: object
+            fields:
+              - name: quote
+                type: text
+              - name: attribution
+                type: string
+          - name: cta
+            label: Closing call to action
+            type: object
+            fields:
+              - name: headline
+                type: string
+              - name: lead
+                type: text
+              - name: bookLabel
+                type: string
+              - name: messageLabel
+                type: string
+              - name: aboutLinkLabel
+                type: string
+
+      - name: about
+        label: About
+        type: file
+        path: src/content/about.json
+        format: json
+        fields:
+          - name: metaTitle
+            label: Browser tab title
+            type: string
+          - name: metaDescription
+            label: Search / social description
+            type: text
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - name: headline
+                label: Headline (*word* = accent colour)
+                type: text
+              - name: lead
+                type: text
+          - name: tension
+            label: Tension section
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: paragraphs
+                type: text
+                list: true
+              - name: aside
+                label: Highlighted aside
+                type: text
+          - name: path
+            label: Path / milestones
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: milestones
+                type: text
+                list: true
+          - name: principles
+            label: Principles
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: intro
+                type: text
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    summary: "{title}"
+                fields:
+                  - name: title
+                    type: string
+                  - name: body
+                    type: text
+          - name: cta
+            label: Closing call to action
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: string
+              - name: lead
+                type: text
+              - name: primaryCta
+                type: string
+              - name: secondaryCta
+                type: string
+              - name: linkedinLabel
+                type: string
+
+      - name: working-together
+        label: Working Together
+        type: file
+        path: src/content/working-together.json
+        format: json
+        fields:
+          - name: metaTitle
+            label: Browser tab title
+            type: string
+          - name: metaDescription
+            label: Search / social description
+            type: text
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: lead
+                type: text
+          - name: services
+            label: Services
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name}"
+            fields:
+              - name: id
+                label: Section id (do not change unless you know why)
+                type: string
+              - name: name
+                type: string
+              - name: quote
+                type: text
+              - name: intro
+                type: text
+              - name: body
+                type: text
+              - name: whoLabel
+                type: string
+              - name: whoItems
+                label: Who this is for
+                type: string
+                list: true
+              - name: howLabel
+                type: string
+              - name: howBody
+                type: text
+          - name: caseCallout
+            label: Case studies callout (if enabled)
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: lead
+                type: text
+              - name: cta
+                type: string
+          - name: blendBar
+            label: Blend bar
+            type: object
+            fields:
+              - name: left
+                type: string
+              - name: right
+                type: string
+          - name: training
+            label: Training
+            type: object
+            fields:
+              - name: headline
+                type: text
+              - name: lead
+                type: text
+              - name: paragraphs
+                type: text
+                list: true
+          - name: testimonials
+            label: Testimonials
+            type: object
+            fields:
+              - name: headline
+                type: string
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    summary: "{attribution}"
+                fields:
+                  - name: quote
+                    type: text
+                  - name: attribution
+                    type: string
+          - name: faq
+            label: FAQ
+            type: object
+            fields:
+              - name: label
+                type: string
+              - name: headline
+                type: string
+              - name: items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{question}"
+                fields:
+                  - name: question
+                    type: string
+                  - name: answer
+                    type: text
+          - name: cta
+            label: Closing call to action
+            type: object
+            fields:
+              - name: headline
+                type: string
+              - name: lead
+                type: text
+              - name: formatNote
+                type: text
+              - name: bookLabel
+                type: string
+              - name: messageLabel
+                type: string
+              - name: linkedinLabel
+                type: string
+
+      - name: contact
+        label: Contact
+        type: file
+        path: src/content/contact.json
+        format: json
+        fields:
+          - name: metaTitle
+            label: Browser tab title
+            type: string
+          - name: metaDescription
+            label: Search / social description
+            type: text
+          - name: hero
+            label: Hero
+            type: object
+            fields:
+              - name: headline
+                type: string
+              - name: lead
+                type: text
+          - name: form
+            label: Contact form
+            type: object
+            fields:
+              - name: title
+                type: string
+              - name: note
+                type: text
+              - name: thankYou
+                label: Thank-you message
+                type: text
+              - name: submitLabel
+                type: string
+              - name: privacyNote
+                type: text
+          - name: schedule
+            label: Schedule card
+            type: object
+            fields:
+              - name: title
+                type: string
+              - name: body
+                type: text
+              - name: cta
+                type: string
+          - name: linkedin
+            label: LinkedIn card
+            type: object
+            fields:
+              - name: title
+                type: string
+              - name: body
+                type: text
+              - name: cta
+                type: string
+          - name: company
+            label: Company details
+            type: object
+            fields:
+              - name: title
+                type: string
+              - name: name
+                type: string
+              - name: address
+                type: string
+              - name: registration
+                type: string

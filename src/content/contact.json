@@ -1,0 +1,31 @@
+{
+  "metaTitle": "Contact — Lili David",
+  "metaDescription": "Get in touch with Lili David — facilitator, consultant, and coach.",
+  "hero": {
+    "headline": "Get in touch",
+    "lead": "If you're trying to build a way of working that is both effective and human, I'd be glad to hear more about your context. There's no obligation — an initial conversation is simply a chance to understand each other's situations."
+  },
+  "form": {
+    "title": "Send a message",
+    "note": "I aim to respond to all messages within two working days. If your situation is time-sensitive, please mention it in your message.",
+    "thankYou": "Thank you. Your message has been sent. I'll get back to you as soon as I can.",
+    "submitLabel": "Send message",
+    "privacyNote": "Your information will be used only to respond to your enquiry. See the Privacy Policy for details."
+  },
+  "schedule": {
+    "title": "Schedule a conversation",
+    "body": "Prefer to find a time directly? You can book a 45 minute exploratory call using the scheduler below.",
+    "cta": "Book a call →"
+  },
+  "linkedin": {
+    "title": "Connect on LinkedIn",
+    "body": "I'm quite active on LinkedIn and regularly share reflections and practical insights from my work with teams and organisations.",
+    "cta": "Follow on LinkedIn ↗"
+  },
+  "company": {
+    "title": "Company details",
+    "name": "CoherentOrgs SRL",
+    "address": "Str Ion Lahovari 23B/2, Dumbraveni, Romania",
+    "registration": "Registration Number: RO54128042"
+  }
+}
