@@ -15,10 +15,9 @@ import copy from '../content/about.json';
       </div>
       <div class="about-photo-wrap hero-anim hero-anim--2">
         <img
-          src="/images/about-hero-GIF.gif?v=20260401"
-          alt="Lili David facilitating a group session"
+          src="/images/lili-about-hero.jpg"
+          alt="Lili David standing beside a flipchart"
           class="about-photo"
-          onerror="this.onerror=null;this.src='/images/about-hero-group-2.jpg';"
           loading="eager"
           decoding="async"
         />
@@ -444,10 +443,8 @@ import copy from '../content/about.json';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: calc(23% - 165px) calc(100% - 65px);
+    object-position: center 32%;
     display: block;
-    transform: scale(1.18);
-    transform-origin: center top;
   }
 
   .about-hero-copy h1 {
@@ -630,11 +627,8 @@ import copy from '../content/about.json';
       text-align: center;
     }
 
-    /* Desktop crop/scale targets a wide frame; on tablet/phone it leaves empty bands */
     .about-photo {
-      object-position: center center;
-      transform: scale(1.04);
-      transform-origin: center center;
+      object-position: center 32%;
     }
 
     .about-hero-copy .lead {
@@ -677,9 +671,7 @@ import copy from '../content/about.json';
     }
     .about-photo {
       object-fit: cover;
-      object-position: center 42%;
-      transform: none;
-      transform-origin: center center;
+      object-position: center 30%;
     }
     .about-hero-copy { text-align: center; height: auto; min-height: auto; }
     .about-hero-copy .lead { margin-inline: auto; margin-top: var(--space-md); }
